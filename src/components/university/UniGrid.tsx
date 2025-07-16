@@ -16,11 +16,11 @@ export default function UniGrid() {
                 setLoading(true);
                 setUniversities(await getUniversities());
                 setError(false);
-                setLoading(false);
             } catch (e){
-                setLoading(false);
                 setError(true);
                 console.log(e)
+            } finally {
+                setLoading(false);
             }
             
         }
