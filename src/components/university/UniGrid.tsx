@@ -38,7 +38,7 @@ export default function UniGrid() {
             {!loading && !error && universities.length === 0 && <p>No universities found.</p>}
 
             {!loading && !error && universities.length > 0 &&
-                <div>
+                <div className="grid grid-cols-4">
                     {universities.map( (uni) => (
                         <UniCard key={uni.id} university={uni} />
                     ))}
