@@ -9,7 +9,7 @@ export default function Home() {
             <div className="flex flex-col text-center border-2 p-15 rounded-2xl">
                 <h3 className="mb-5 text-2xl">Search a University</h3>
                 <form>
-                    <input type="text" placeholder="Search" className="mr-2 text-center" />
+                    <input type="text" placeholder="Search" className="p-2 mr-2 text-center rounded-xl" />
                 </form>
             </div>
         
