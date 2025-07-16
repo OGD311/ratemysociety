@@ -17,9 +17,10 @@ export default function UniGrid() {
                 setUniversities(await getUniversities());
                 setError(false);
                 setLoading(false);
-            } catch {
+            } catch (e){
                 setLoading(false);
                 setError(true);
+                console.log(e)
             }
             
         }
@@ -37,11 +38,11 @@ export default function UniGrid() {
             {!loading && !error && universities.length === 0 && <p>No universities found.</p>}
 
             {!loading && !error && universities.length > 0 &&
-                <table>
+                <div>
                     {universities.map( (uni) => (
                         <UniCard key={uni.id} university={uni} />
                     ))}
-                </table>
+                </div>
             }
         </div>
     )
