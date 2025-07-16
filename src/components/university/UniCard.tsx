@@ -1,16 +1,24 @@
+"use client";
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { generateURLSafe } from "@/utils/URLSafe";
 
 export default function UniCard( { university } : { university: UNIVERSITY }) {
+    const router = useRouter();
+    const goToUniversity = ( uniName: string ) => {
+        router.push(`/${uniName}`)
+    }
 
+    const safeName = generateURLSafe(university.name);
 
     return (
-        <div className="flex flex-col items-center h-64 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-64 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 transition duration-200">
+        <div onClick={() => goToUniversity(safeName)} className="flex flex-col items-center h-64 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-64 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 transition duration-200 cursor-pointer">
             <h1 className="mt-2 mb-2 text-2xl text-center">
                 { university.name }
             </h1>
             <Image 
-                src={`/university/${(university.name).toLowerCase().replace(/ /g, "_")}.svg`}
+                src={`/university/${safeName}.svg`}
                 alt={"Logo for " + university.name}
                 width={170}
                 height={200}
