@@ -18,5 +18,5 @@ model University {
   id Int @id @default(autoincrement())
   name String @unique
   rating Float @default(0)
-  society_count Int @default(0)
+  societyCount Int @default(0)
 }
