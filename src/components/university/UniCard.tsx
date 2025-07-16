@@ -5,21 +5,29 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
 
 
     return (
-        <div className="border-2 border-gray-400 max-w-48 rounded-xl p-4 pt-2 m-10 flex flex-col items-center">
-            <h1 className="text-2xl mb-2">
+        <div className="flex flex-col items-center h-64 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-64 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 transition duration-200">
+            <h1 className="mt-2 mb-2 text-2xl text-center">
                 { university.name }
             </h1>
             <Image 
-                src={`/${(university.name).toLowerCase().replace(" ", "_")}.svg`}
+                src={`/university/${(university.name).toLowerCase().replace(/ /g, "_")}.svg`}
                 alt={"Logo for " + university.name}
-                width={100}
-                height={100}
-                className="m-1"
+                width={170}
+                height={200}
+                className="m-1 mb-5"
             />
-            <div className="text-yellow-600">
-                {university.rating} / 5
+            <div className="flex text-lg text-yellow-600">
+                <p className="mr-2">
+                    {university.rating} / 5
+                </p>
+                <Image
+                    src={'star.svg'}
+                    alt="Image of gold star"
+                    width={20}
+                    height={20}
+                />
             </div>
-            <div>
+            <div className="mt-2 text-lg">
                 {university.societyCount} societ{university.societyCount == 1 ? 'y' : 'ies'}
             </div>
         </div>
