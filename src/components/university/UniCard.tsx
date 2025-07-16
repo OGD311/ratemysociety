@@ -1,6 +1,7 @@
+import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
 
-export default function UniCard( { university } : { university: any }) {
+export default function UniCard( { university } : { university: UNIVERSITY }) {
 
 
     return (

@@ -2,12 +2,12 @@
 import { getUniversities } from "@/lib/universities";
 import { useEffect, useState } from "react";
 import UniCard from "./UniCard";
-
+import { UNIVERSITY } from "@/constants/interfaces";
 
 export default function UniGrid() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [universities, setUniversities] = useState([]);
+    const [universities, setUniversities] = useState<UNIVERSITY[]>([]);
 
     useEffect( () => {
         async function loadUnis() {
