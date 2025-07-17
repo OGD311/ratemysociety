@@ -22,6 +22,8 @@ model University {
   societyCount Int @default(0)
   website String?
   studentsUnion String?
+
+  societies Society[]
 }
 
 
@@ -32,4 +34,7 @@ model Society {
   rating Float @default(0)
   memberCount Int @default(0)
   website String?
+
+  universityId Int
+  university University @relation(fields: [universityId], references: [id])
 }
