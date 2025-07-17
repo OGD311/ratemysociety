@@ -8,3 +8,19 @@ export const getUniversities = async () => {
         }
     });
 };
+
+
+export const searchUniversities = async (searchString: string) => {
+    return await prisma.university.findMany({
+        take: 5,
+        orderBy: { name: 'asc' },
+        where: {
+            name: {
+                startsWith: searchString,
+            },
+        },
+        select: {
+            name: true,
+        },
+    })
+}
