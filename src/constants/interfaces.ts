@@ -6,7 +6,15 @@ export interface UNIVERSITY {
     societyCount: number,
     website?: string | null,
     studentsUnion?: string | null,
+}
 
+export interface SOCIETY {
+    id: number,
+    name: string,
+    description?: string | null,
+    rating: number,
+    memberCount: number,
+    website?: string | null
 }
 
 export interface SEARCH_RESULT {
