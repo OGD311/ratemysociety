@@ -42,8 +42,8 @@ export default function ShowUni() {
             {!loading && !error && university === null && <p>Something went wrong. Please try again</p>}
 
             {!loading && !error && university !== null &&
-                <div className="flex border-2 min-w-full max-w-full w-[90dvw] h-64 p-10 pt-5 rounded-2xl shadow-lg shadow-gray-500 ">
-                    <div className="">
+                <div className="flex border-2 min-w-full max-w-full w-[90dvw] h-64 p-10 pt-5 pb-5 rounded-2xl shadow-lg shadow-gray-500 ">
+                    <div className="h-full">
                         <h1 className="mt-2 mb-2 text-2xl text-left">
                             { university.name }
                         </h1>
