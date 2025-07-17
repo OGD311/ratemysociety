@@ -13,8 +13,8 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
     const safeName = generateURLSafe(university.name);
 
     return (
-        <div onClick={() => goToUniversity(safeName)} className="flex flex-col items-center h-64 min-h-64 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-64 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
-            <h1 className="mt-2 mb-2 text-2xl text-center">
+        <div onClick={() => goToUniversity(safeName)} className="contain-content flex flex-col items-center h-72 min-h-72 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-72 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
+            <h1 className="mt-2 text-2xl text-center">
                 { university.name }
             </h1>
             <Image 
@@ -22,7 +22,7 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
                 alt={"Logo for " + university.name}
                 width={200}
                 height={60}
-                className="m-1"
+                className="mt-auto"
             />
             <div className="flex text-lg text-yellow-600 mt-auto">
                 <p className="mr-2">
