@@ -34,3 +34,20 @@ export const getUniversityDetails = async (universityName: string) => {
         }
     })
 }
+
+
+
+export const updateSocietyCount = async () => {
+    const universities = await prisma.university.findMany();
+    
+    for (const uni of universities) {
+        const count = await prisma.society.count({
+            where: { universityId: uni.id },
+        });
+    
+        await prisma.university.update({
+            where: { id: uni.id },
+            data: { societyCount: count },
+        });
+    }
+}
