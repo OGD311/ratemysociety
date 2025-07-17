@@ -5,7 +5,7 @@ import { searchUniversities } from "@/lib/universities";
 import { useRouter } from "next/navigation";
 import { generateURLSafe } from "@/utils/URLSafe";
 
-export default function UniSearchBox() {
+export default function UniSearchBox({ className } : { className?: string }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [universities, setUniversities] = useState<UNIVERSITY[]>([]);
@@ -45,7 +45,7 @@ export default function UniSearchBox() {
     
 
     return (
-        <>
+        <div className={className}>
         <input 
             type="text"
             placeholder="Search"
@@ -59,7 +59,7 @@ export default function UniSearchBox() {
         {!loading && !error && universities.length === 0 && search.length > 0 && <p>No Universities found.</p>}
 
         {!loading && !error && universities.length > 0 && (
-            <ul className="p-3 mt-2 text-center shadow-lg shadow-gray-500">
+            <ul className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">
                 {universities.map( (uni) => (
                     <li 
                     onClick={() => goToUniversity(generateURLSafe(uni.name))} 
@@ -69,7 +69,7 @@ export default function UniSearchBox() {
                 ))}
             </ul>
         )}
-        </>
+        </div>
     )
         
 }
