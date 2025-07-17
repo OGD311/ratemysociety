@@ -29,6 +29,13 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                 </div>
                 <div className="mt-2 text-lg">
                     {university.societyCount} societ{university.societyCount == 1 ? 'y' : 'ies'}
+
+                    {university.website &&
+                    <a href={university.website} className="ml-10 border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800">Website</a>
+                    }
+                    {university.studentsUnion &&
+                    <a href={university.studentsUnion} className="ml-2 border-0 rounded-lg p-2 bg-red-500 text-white hover:bg-red-800">Students Union</a>
+                    }
                 </div>
             </div>
             <Image 
