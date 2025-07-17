@@ -20,4 +20,6 @@ model University {
   description String?
   rating Float @default(0)
   societyCount Int @default(0)
+  website String?
+  studentsUnion String?
 }

@@ -4,6 +4,9 @@ export interface UNIVERSITY {
     description?: string | null,
     rating: number,
     societyCount: number,
+    website?: string | null,
+    studentsUnion?: string | null,
+
 }
 
 export interface SEARCH_RESULT {
