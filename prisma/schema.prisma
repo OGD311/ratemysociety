@@ -17,6 +17,7 @@ datasource db {
 model University {
   id Int @id @default(autoincrement())
   name String @unique
+  description String?
   rating Float @default(0)
   societyCount Int @default(0)
 }
