@@ -1,3 +1,3 @@
-export function generateURLSafe(string: string) {
-    return string.toLowerCase().replace(/ /g, "_")
+export function generateURLSafe(unsafe: string) {
+    return unsafe.toLowerCase().replace(/ /g, "_")
 }
