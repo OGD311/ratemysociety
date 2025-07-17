@@ -16,7 +16,7 @@ export const searchUniversities = async (searchString: string) => {
         orderBy: { name: 'asc' },
         where: {
             name: {
-                startsWith: searchString,
+                contains: searchString,
             },
         },
         select: {
