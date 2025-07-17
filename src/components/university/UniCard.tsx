@@ -20,8 +20,8 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
             <Image 
                 src={`/university/${safeName}.svg`}
                 alt={"Logo for " + university.name}
-                width={200}
-                height={200}
+                width={180}
+                height={60}
                 className="m-1 mb-5"
             />
             <div className="flex text-lg text-yellow-600">
