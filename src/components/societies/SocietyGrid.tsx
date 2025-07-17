@@ -9,13 +9,17 @@ export default function SocietyGrid({ universityId } : { universityId: number })
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [societies, setSocieties] = useState<SOCIETY[]>([]);
+    const [filteredSocieties, setFilteredSocieties] = useState<SOCIETY[]>([]);
+    
 
     useEffect( () => {
         
         async function loadSocieties(universityId: number) {
             try {
                 setLoading(true);
-                setSocieties(await getSocieties(universityId))
+                const societies = await getSocieties(universityId);
+                setSocieties(societies);
+                setFilteredSocieties(societies);
                 setError(false);
             } catch (e) {
                 setError(true);
@@ -27,17 +31,34 @@ export default function SocietyGrid({ universityId } : { universityId: number })
         loadSocieties(universityId);
     }, [])
 
+
+    function filterUniversities(e: React.ChangeEvent<HTMLInputElement>) {
+        const search = e.target?.value.toLowerCase().trim();
+
+        if (search.length === 0) {
+            setFilteredSocieties(societies);
+        } else {
+            setFilteredSocieties(
+                societies.filter((society) =>
+                    society.name.toLowerCase().includes(search)
+                )
+            );
+        }
+    }
+
     return (
-        <div>
+        <div className="flex flex-col items-center">
+            <input type="text" placeholder="Search" onChange={filterUniversities} className="mt-10"/>
+
             {loading && <Loader />}
 
             {!loading && error && <p>Something went wrong. Please try again</p>}
 
-            {!loading && !error && societies.length === 0 && <p>No societies found.</p>}
+            {!loading && !error && filteredSocieties.length === 0 && <p>No societies found.</p>}
 
-            {!loading && !error && societies.length > 0 &&
+            {!loading && !error && filteredSocieties.length > 0 &&
                 <div className="grid grid-cols-5 gap-5">
-                    {societies.map( (society) => (
+                    {filteredSocieties.map( (society) => (
                         <SocietyCard key={society.id} society={society} />
                     ))}
                 </div>
