@@ -16,7 +16,7 @@ export default function ShowUni() {
     const [university, setUniversity] = useState<UNIVERSITY | null>(null);
 
     useEffect( () => {
-        async function getUniversity(universityName: string) {
+        async function loadUniversity(universityName: string) {
             try {
                 setLoading(true);
                 setUniversity(await getUniversityDetails(universityName));
@@ -29,7 +29,7 @@ export default function ShowUni() {
             }
         }
 
-        getUniversity(fullUniversityName);
+        loadUniversity(fullUniversityName);
     }, [])
 
 
@@ -42,7 +42,9 @@ export default function ShowUni() {
             {!loading && !error && university === null && <p>Something went wrong. Please try again</p>}
 
             {!loading && !error && university !== null &&
+                <>
                 <UniDetails university={university} />
+                </>
             }
         </div>
     );
