@@ -43,14 +43,14 @@ export default function ShowUni() {
 
             {!loading && !error && university !== null &&
                 <div className="flex border-2 min-w-full max-w-full w-[90dvw] h-64 p-10 pt-5 pb-5 rounded-2xl shadow-lg shadow-gray-500 ">
-                    <div className="h-full">
+                    <div className="h-full flex flex-col">
                         <h1 className="mt-2 mb-2 text-2xl text-left">
                             { university.name }
                         </h1>
                         <p className="text-wrap w-3/4">
                             { university.description }
                         </p>
-                        <div className="flex text-lg mt-5 text-yellow-600">
+                        <div className="flex text-lg mt-auto text-yellow-600">
                             <p className="mr-2">
                                 {university.rating} / 5
                             </p>
