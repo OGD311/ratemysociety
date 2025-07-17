@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { UNIVERSITY } from "@/constants/interfaces";
+import { useState } from "react";
+import { SEARCH_RESULT } from "@/constants/interfaces";
 import { searchUniversities } from "@/lib/universities";
 import { useRouter } from "next/navigation";
 import { generateURLSafe } from "@/utils/URLSafe";
@@ -8,7 +8,7 @@ import { generateURLSafe } from "@/utils/URLSafe";
 export default function UniSearchBox({ className } : { className?: string }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [universities, setUniversities] = useState<UNIVERSITY[]>([]);
+    const [universities, setUniversities] = useState<SEARCH_RESULT[]>([]);
     const [search, setSearch] = useState("");
 
 

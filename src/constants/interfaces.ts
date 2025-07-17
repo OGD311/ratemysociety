@@ -4,3 +4,7 @@ export interface UNIVERSITY {
     rating: number,
     societyCount: number,
 }
+
+export interface SEARCH_RESULT {
+    name: string;
+}
