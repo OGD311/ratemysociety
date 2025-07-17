@@ -13,11 +13,11 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
     }
 
     return (
-        <div onClick={() => goToSociety(society.name)} className="flex flex-col items-center p-4 pt-2 mt-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-64 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
+        <div onClick={() => goToSociety(society.name)} className="flex flex-col items-center p-4 pt-2 mt-10 border-2 border-gray-400 shadow-lg max-w-54 min-w-54 w-54 max-h-48 min-h-48 h-48 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
             <h1 className="mt-2 mb-2 text-2xl text-center">
                 { society.name }
             </h1>
-            <div className="flex text-lg text-yellow-600">
+            <div className="flex text-lg text-yellow-600 mt-auto">
                 <p className="mr-2">
                     {society.rating} / 5
                 </p>
