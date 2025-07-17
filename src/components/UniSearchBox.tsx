@@ -52,11 +52,11 @@ export default function UniSearchBox({ className } : { className?: string }) {
             value={search}
             onChange={handleInputChange}
         />
-        {loading && <p>Loading...</p>}
+        {loading && <p className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">Loading...</p>}
 
-        {!loading && error && <p>Error loading Universities</p>}
+        {!loading && error && <p className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">Error loading Universities</p>}
 
-        {!loading && !error && universities.length === 0 && search.length > 0 && <p>No Universities found.</p>}
+        {!loading && !error && universities.length === 0 && search.length > 0 && <p className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">No Universities found.</p>}
 
         {!loading && !error && universities.length > 0 && (
             <ul className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">
