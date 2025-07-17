@@ -35,6 +35,9 @@ export default function UniSearchBox({ className } : { className?: string }) {
             if (query.length > 0) {
                 loadUnis(query);
             }
+            if (query.length === 0) {
+                setUniversities([]);
+            }
         }
     }
 
