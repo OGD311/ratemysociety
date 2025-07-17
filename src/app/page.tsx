@@ -1,3 +1,4 @@
+import UniSearchBox from "@/components/UniSearchBox";
 
 
 export default function Home() {
@@ -6,10 +7,10 @@ export default function Home() {
 
             <h1 className="mb-20 text-6xl">Rate My Society</h1>
 
-            <div className="flex flex-col text-center border-2 p-15 rounded-2xl">
+            <div className="flex flex-col items-center text-center border-2 p-15 rounded-2xl">
                 <h3 className="mb-5 text-2xl">Search a University</h3>
                 <form>
-                    <input type="text" placeholder="Search" className="p-2 mr-2 text-center rounded-xl" />
+                    <UniSearchBox  />
                 </form>
             </div>
         
