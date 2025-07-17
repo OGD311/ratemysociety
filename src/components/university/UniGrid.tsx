@@ -8,13 +8,16 @@ export default function UniGrid() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [universities, setUniversities] = useState<UNIVERSITY[]>([]);
+    const [filteredUniversities, setFilteredUniversities] = useState<UNIVERSITY[]>([]);
 
     useEffect( () => {
         async function loadUnis() {
             
             try{
                 setLoading(true);
-                setUniversities(await getUniversities());
+                const unis = await getUniversities()
+                setUniversities(unis);
+                setFilteredUniversities(unis);
                 setError(false);
             } catch (e){
                 setError(true);
@@ -29,17 +32,32 @@ export default function UniGrid() {
     }, [])
 
 
+    function filterUniversities(e: React.ChangeEvent<HTMLInputElement>) {
+        const search = e.target?.value.toLowerCase().trim();
+
+        if (search.length === 0) {
+            setFilteredUniversities(universities);
+        } else {
+            setFilteredUniversities(
+                universities.filter((uni) =>
+                    uni.name.toLowerCase().includes(search)
+                )
+            );
+        }
+    }
+
     return(
-        <div>
+        <div className="flex flex-col items-center">
+            <input type="text" placeholder="Search" onChange={filterUniversities} />
             {loading && <p>Loading...</p>}
 
             {!loading && error && <p>Something went wrong. Please try again</p>}
 
-            {!loading && !error && universities.length === 0 && <p>No universities found.</p>}
+            {!loading && !error && filterUniversities.length === 0 && <p>No universities found.</p>}
 
-            {!loading && !error && universities.length > 0 &&
+            {!loading && !error && filterUniversities.length > 0 &&    
                 <div className="grid grid-cols-4">
-                    {universities.map( (uni) => (
+                    {filteredUniversities.map((uni) => (
                         <UniCard key={uni.id} university={uni} />
                     ))}
                 </div>
