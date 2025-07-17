@@ -24,3 +24,13 @@ export const searchUniversities = async (searchString: string) => {
         },
     })
 }
+
+export const getUniversityDetails = async (universityName: string) => {
+    return await prisma.university.findFirstOrThrow({
+        where: {
+            name: {
+                equals: universityName,
+            }
+        }
+    })
+}
