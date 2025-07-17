@@ -23,3 +23,13 @@ model University {
   website String?
   studentsUnion String?
 }
+
+
+model Society {
+  id Int @id @default(autoincrement())
+  name String @unique
+  description String?
+  rating Float @default(0)
+  memberCount Int @default(0)
+  website String?
+}
