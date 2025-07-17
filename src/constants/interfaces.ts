@@ -1,7 +1,7 @@
 export interface UNIVERSITY {
     id: number,
     name: string,
-    description?: string,
+    description?: string | null,
     rating: number,
     societyCount: number,
 }
