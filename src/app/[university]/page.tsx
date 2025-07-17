@@ -5,6 +5,7 @@ import { generateUniName, generateURLSafe } from "@/utils/URLSafe";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import UniDetails from "@/components/university/UniDetails";
+import SocietyGrid from "@/components/societies/SocietyGrid";
 
 export default function ShowUni() {
     const uniNameParam = useParams<{ university: string; }>().university;
@@ -44,6 +45,7 @@ export default function ShowUni() {
             {!loading && !error && university !== null &&
                 <>
                 <UniDetails university={university} />
+                <SocietyGrid universityId={university.id} />
                 </>
             }
         </div>
