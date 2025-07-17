@@ -3,6 +3,7 @@ import { getUniversities } from "@/lib/universities";
 import { useEffect, useState } from "react";
 import UniCard from "./UniCard";
 import { UNIVERSITY } from "@/constants/interfaces";
+import Loader from "../loader";
 
 export default function UniGrid() {
     const [loading, setLoading] = useState(true);
@@ -49,7 +50,7 @@ export default function UniGrid() {
     return(
         <div className="flex flex-col items-center">
             <input type="text" placeholder="Search" onChange={filterUniversities} />
-            {loading && <p>Loading...</p>}
+            {loading && <Loader />}
 
             {!loading && error && <p>Something went wrong. Please try again</p>}
 

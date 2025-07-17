@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import UniDetails from "@/components/university/UniDetails";
 import SocietyGrid from "@/components/societies/SocietyGrid";
+import Loader from "@/components/loader";
 
 export default function ShowUni() {
     const uniNameParam = useParams<{ university: string; }>().university;
@@ -36,7 +37,7 @@ export default function ShowUni() {
 
     return(
         <div>
-            {loading && <p>Loading...</p>}
+            {loading && <Loader />}
             
             {!loading && error && <p>404 - University not found</p> }
 
