@@ -9,3 +9,19 @@ export const getSocieties = async (universityId: number) => {
         }
     })
 }
+
+
+export const getSocietyDetails = async (universityName: string, societyName: string) => {
+    return await prisma.society.findFirstOrThrow({
+        where: {
+            name: {
+                equals: societyName,
+            },
+            university: {
+                name: {
+                    equals: universityName,
+                }
+            }
+        }
+    })
+}
