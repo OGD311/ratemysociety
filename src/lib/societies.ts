@@ -1,4 +1,5 @@
 'use server';
+import { SOCIETY } from "@/constants/interfaces";
 import { prisma } from "./prisma";
 
 
@@ -12,16 +13,16 @@ export const getSocieties = async (universityId: number) => {
 
 
 export const getSocietyDetails = async (universityName: string, societyName: string) => {
-    return await prisma.society.findFirstOrThrow({
-        where: {
-            name: {
-                equals: societyName,
-            },
-            university: {
-                name: {
-                    equals: universityName,
-                }
-            }
-        }
-    })
+    const results: SOCIETY[] = await prisma.$queryRaw`
+        SELECT s.* FROM Society s
+        INNER JOIN University u ON s.universityId = u.id
+        WHERE LOWER(s.name) = LOWER(${societyName}) AND LOWER(u.name) = LOWER(${universityName})
+        LIMIT 1
+    `;
+
+    if (!results.length) {
+        throw new Error('Society not found');
+    }
+
+    return results[0];
 }
