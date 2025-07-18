@@ -44,10 +44,10 @@ export default function ShowUni() {
             {!loading && !error && university === null && <p>Something went wrong. Please try again</p>}
 
             {!loading && !error && university !== null &&
-                <>
+                <div className="text-center flex flex-col items-center">
                 <UniDetails university={university} />
                 <SocietyGrid universityId={university.id} />
-                </>
+                </div>
             }
         </div>
     );
