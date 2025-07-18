@@ -1,7 +1,7 @@
 "use client";
 import { UNIVERSITY } from "@/constants/interfaces";
 import { getUniversityDetails } from "@/lib/universities";
-import { generateUniName, generateURLSafe } from "@/utils/URLSafe";
+import { generateOriginal, generateURLSafe } from "@/utils/URLSafe";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import UniDetails from "@/components/university/UniDetails";
@@ -10,7 +10,7 @@ import Loader from "@/components/loader";
 
 export default function ShowUni() {
     const uniNameParam = useParams<{ university: string; }>().university;
-    const fullUniversityName = generateUniName(uniNameParam);
+    const fullUniversityName = generateOriginal(uniNameParam);
     const safeName = generateURLSafe(uniNameParam);
 
     const [loading, setLoading] = useState(true);
