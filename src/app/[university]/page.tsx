@@ -1,7 +1,7 @@
 "use client";
 import { UNIVERSITY } from "@/constants/interfaces";
 import { getUniversityDetails } from "@/lib/universities";
-import { generateOriginal, generateURLSafe } from "@/utils/URLSafe";
+import { generateOriginal } from "@/utils/URLSafe";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import UniDetails from "@/components/university/UniDetails";
