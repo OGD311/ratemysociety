@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SEARCH_RESULT } from "@/constants/interfaces";
 import { searchUniversities } from "@/lib/universities";
 import { useRouter } from "next/navigation";
-import { generateURLSafe } from "@/utils/URLSafe";
+import { generateURLSafeLowercase } from "@/utils/URLSafe";
 import Image from "next/image";
 
 export default function UniSearchBox({ className } : { className?: string }) {
@@ -66,7 +66,7 @@ export default function UniSearchBox({ className } : { className?: string }) {
             <ul className="absolute mt-2 ml-auto w-80 min-w-80 max-w-80 text-center bg-white shadow-lg shadow-gray-500">
                 {universities.map( (uni) => (
                     <li 
-                        onClick={() => goToUniversity(generateURLSafe(uni.name))} 
+                        onClick={() => goToUniversity(generateURLSafeLowercase(uni.name))} 
                         key={uni.name}
                         className="p-4 cursor-pointer flex items-center max-h-10 h-10 hover:bg-gray-300"
                     >
@@ -74,7 +74,7 @@ export default function UniSearchBox({ className } : { className?: string }) {
                             {uni.name}
                         </p>
                         <Image 
-                            src={`/university/${generateURLSafe(uni.name)}.svg`}
+                            src={`/university/${generateURLSafeLowercase(uni.name)}.svg`}
                             alt={"Logo for " + uni.name}
                             width={75}
                             height={60}

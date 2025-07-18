@@ -2,7 +2,7 @@
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { generateURLSafe } from "@/utils/URLSafe";
+import { generateURLSafeLowercase } from "@/utils/URLSafe";
 
 export default function UniCard( { university } : { university: UNIVERSITY }) {
     const router = useRouter();
@@ -10,7 +10,7 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
         router.push(`/${uniName}`)
     }
 
-    const safeName = generateURLSafe(university.name);
+    const safeName = generateURLSafeLowercase(university.name);
 
     return (
         <div onClick={() => goToUniversity(safeName)} className="contain-content flex flex-col items-center h-72 min-h-72 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-72 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
