@@ -11,7 +11,6 @@ import Loader from "@/components/loader";
 export default function ShowUni() {
     const uniNameParam = useParams<{ university: string; }>().university;
     const fullUniversityName = generateOriginal(uniNameParam);
-    const safeName = generateURLSafe(uniNameParam);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
