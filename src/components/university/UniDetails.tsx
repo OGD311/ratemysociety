@@ -13,10 +13,10 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                 <h1 className="mt-2 mb-2 text-2xl text-left">
                     { university.name }
                 </h1>
-                <p className="text-wrap w-3/4">
+                <p className="text-wrap w-3/4 text-left">
                     { university.description }
                 </p>
-                <div className="flex text-lg mt-auto text-yellow-600">
+                <div className="flex text-lg mt-auto text-yellow-600 text-left">
                     <p className="mr-2">
                         {university.rating} / 5
                     </p>
@@ -27,7 +27,7 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                         height={20}
                     />
                 </div>
-                <div className="mt-2 text-lg">
+                <div className="mt-2 text-lg text-left">
                     {university.societyCount} societ{university.societyCount == 1 ? 'y' : 'ies'}
 
                     {university.website &&
