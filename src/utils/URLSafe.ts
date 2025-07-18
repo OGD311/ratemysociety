@@ -2,7 +2,7 @@ export function generateURLSafe(unsafe: string) {
     return unsafe.toLowerCase().replace(/ /g, "_")
 }
 
-export function generateUniName(safe: string): string {
+export function generateOriginal(safe: string): string {
     let unsafe = safe.replace(/_/g, " ").split(" ")
 
     unsafe.forEach((word: string, index: number) => {
