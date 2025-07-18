@@ -4,6 +4,7 @@ import { SEARCH_RESULT } from "@/constants/interfaces";
 import { searchUniversities } from "@/lib/universities";
 import { useRouter } from "next/navigation";
 import { generateURLSafe } from "@/utils/URLSafe";
+import Image from "next/image";
 
 export default function UniSearchBox({ className } : { className?: string }) {
     const [loading, setLoading] = useState(false);
@@ -62,13 +63,24 @@ export default function UniSearchBox({ className } : { className?: string }) {
         {!loading && !error && universities.length === 0 && search.length > 0 && <p className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">No Universities found.</p>}
 
         {!loading && !error && universities.length > 0 && (
-            <ul className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">
+            <ul className="absolute mt-2 ml-auto w-80 min-w-80 max-w-80 text-center bg-white shadow-lg shadow-gray-500">
                 {universities.map( (uni) => (
                     <li 
-                    onClick={() => goToUniversity(generateURLSafe(uni.name))} 
-                    key={uni.name}
-                    className="py-1 m-1 cursor-pointer"
-                    >{uni.name}</li>
+                        onClick={() => goToUniversity(generateURLSafe(uni.name))} 
+                        key={uni.name}
+                        className="p-4 cursor-pointer flex items-center max-h-10 h-10 hover:bg-gray-300"
+                    >
+                        <p className="mr-5">
+                            {uni.name}
+                        </p>
+                        <Image 
+                            src={`/university/${generateURLSafe(uni.name)}.svg`}
+                            alt={"Logo for " + uni.name}
+                            width={75}
+                            height={60}
+                            className="ml-auto"
+                        />    
+                    </li>
                 ))}
             </ul>
         )}
