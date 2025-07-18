@@ -1,11 +1,11 @@
 "use client";
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
-import { generateURLSafeLowercase } from "@/utils/URLSafe";
+import { generateURLSafe } from "@/utils/URLSafe";
 
 export default function UniDetails( { university } : { university: UNIVERSITY }) {
 
-    const safeName = generateURLSafeLowercase(university.name);
+    const safeName = generateURLSafe(university.name);
 
     return (
         <div className="flex border-2 w-[90dvw] max-w-[90dvw] min-w-[90dvw] h-64 p-10 pt-5 pb-5 rounded-2xl shadow-lg shadow-gray-500 ">
