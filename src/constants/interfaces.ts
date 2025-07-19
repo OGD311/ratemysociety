@@ -17,6 +17,13 @@ export interface SOCIETY {
     website?: string | null
 }
 
+export interface REVIEW {
+    id: number,
+    rating: number,
+    comment?: string | null
+    posted_at: Date
+}
+
 export interface SEARCH_RESULT {
     name: string;
 }
