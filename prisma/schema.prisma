@@ -37,4 +37,17 @@ model Society {
 
   universityId Int
   university University @relation(fields: [universityId], references: [id])
+
+  reviews Review[]
+}
+
+
+model Review {
+  id Int @id @default(autoincrement())
+  rating Float
+  comment String?
+  posted_at DateTime
+
+  societyId Int
+  society Society @relation(fields: [societyId], references: [id])
 }
