@@ -3,8 +3,8 @@ import Loader from "@/components/loader";
 import SocietyDetails from "@/components/societies/SocietyDetails";
 import { SOCIETY } from "@/constants/interfaces";
 import { getSocietyDetails } from "@/lib/societies";
-import { generateOriginal } from "@/utils/URLSafe";
-import { useParams } from "next/navigation";
+import { generateOriginal, generateURLSafe } from "@/utils/URLSafe";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
@@ -16,6 +16,13 @@ export default function ShowSociety() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [society, setSociety] = useState<SOCIETY | null>(null);
+
+    const router = useRouter();
+    const goToUniversity = ( uniName: string ) => {
+        router.push(`/${uniName}`)
+    }
+
+    const safeUniName = generateURLSafe(uniFullName);
 
 
     useEffect(() => {
@@ -44,9 +51,12 @@ export default function ShowSociety() {
             {!loading && !error && society === null && <p>404 - Society does not exist</p>}
 
             {!loading && !error && society !== null &&
+            <> 
+                <a onClick={() => goToUniversity(safeUniName)} className="border-2 p-3 rounded-lg relative right-75 bottom-10 hover:bg-blue-400 hover:text-white transition duration-300 cursor-pointer">&lt; {uniFullName}</a>
                 <div className="border-2 p-4 rounded-xl w-[50dvw] min-w-[50dvw] max-w-[50dvw] h-64 min-h-64 max-h-64">
                     <SocietyDetails society={society} />
                 </div>
+            </>
             }
         </div>
     );
