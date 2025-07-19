@@ -1,5 +1,7 @@
 "use client";
 import Loader from "@/components/loader";
+import ReviewCard from "@/components/reviews/ReviewCard";
+import ReviewGrid from "@/components/reviews/ReviewGrid";
 import SocietyDetails from "@/components/societies/SocietyDetails";
 import { SOCIETY } from "@/constants/interfaces";
 import { getSocietyDetails } from "@/lib/societies";
@@ -43,7 +45,7 @@ export default function ShowSociety() {
     }, [])
 
     return (
-        <div>
+        <div className="flex flex-col items-center">
             {loading && <Loader />}
 
             {!loading && error && <p>An Error occured, please try again.</p>}
@@ -52,10 +54,10 @@ export default function ShowSociety() {
 
             {!loading && !error && society !== null &&
             <> 
-                <a onClick={() => goToUniversity(safeUniName)} className="border-2 p-3 rounded-lg relative right-75 bottom-10 hover:bg-blue-400 hover:text-white transition duration-300 cursor-pointer">&lt; {uniFullName}</a>
-                <div className="border-2 p-4 rounded-xl w-[50dvw] min-w-[50dvw] max-w-[50dvw] h-64 min-h-64 max-h-64">
-                    <SocietyDetails society={society} />
-                </div>
+                <a onClick={() => goToUniversity(safeUniName)} className="border-2 p-3 rounded-lg relative right-120 bottom-10 hover:bg-blue-400 hover:text-white transition duration-300 cursor-pointer">&lt; {uniFullName}</a>
+                <SocietyDetails society={society} />
+
+                <ReviewGrid societyId={society.id} />
             </>
             }
         </div>
