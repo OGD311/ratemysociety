@@ -34,9 +34,9 @@ export default function ReviewGrid({ societyId } : { societyId: number}) {
 
             {loading && <Loader />}
 
-            {!loading && error && <p>Something went wrong. Please try again</p>}
+            {!loading && error && <p className="text-center ml-auto mr-auto">Something went wrong. Please try again</p>}
 
-            {!loading && !error && reviews.length === 0 && <p>No reviews yet.</p>}
+            {!loading && !error && reviews.length === 0 && <p className="text-center ml-auto mr-auto">No reviews yet.</p>}
 
             {!loading && !error && reviews.length > 0 &&
                 <div className="grid grid-cols-2">
