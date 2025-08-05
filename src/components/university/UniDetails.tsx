@@ -9,7 +9,7 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
     const safeName = generateURLSafe(university.name);
 
     return (
-        <div className="flex border-2 w-[90dvw] max-w-[90dvw] min-w-[90dvw] h-64 p-10 pt-5 pb-5 rounded-2xl shadow-lg shadow-gray-500 ">
+        <div className="flex border-2 border-gray-200 w-[90dvw] max-w-[90dvw] min-w-[90dvw] h-64 p-10 pt-5 pb-5 rounded-2xl shadow-md">
             <div className="h-full flex flex-col">
                 <h1 className="mt-2 mb-2 text-2xl text-left">
                     { university.name }
