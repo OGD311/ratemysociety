@@ -2,7 +2,7 @@
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
 import { generateURLSafe } from "@/utils/URLSafe";
-import StarRating from "../StarRating";
+import StarRating from "../stars/StarRating";
 
 export default function UniDetails( { university } : { university: UNIVERSITY }) {
 

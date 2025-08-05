@@ -1,5 +1,5 @@
 import { SOCIETY } from "@/constants/interfaces";
-import StarRating from "../StarRating";
+import StarRating from "../stars/StarRating";
 import { UniNameArticle } from "@/utils/UniName";
 
 
