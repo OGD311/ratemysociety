@@ -3,6 +3,9 @@ import { verifyTurnstile } from "@/utils/Turnstile";
 import { prisma } from "./prisma";
 import { headers } from "next/headers";
 import { calculateSocietyRating } from "./societies";
+import { Filter } from "bad-words";
+
+const filter = new Filter();
 
 export const getReviews = async (societyId: number) => {
     return await prisma.review.findMany({
@@ -58,6 +61,8 @@ export const submitReview = async (societyId: number, review: { rating: number, 
         if (comment.length === 0) {
             comment = undefined;
         }
+
+        if (comment) { comment = filter.clean(comment); }
     }
 
     await prisma.review.create({
