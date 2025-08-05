@@ -1,11 +1,14 @@
 import { submitReview } from '@/lib/reviews';
 import React, { useEffect, useRef, useState } from 'react';
+import StarRating from '../StarRating';
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const cfWidget = useRef<HTMLDivElement>(null);
+
+    const [rating, setRating] = useState(0);
 
     useEffect(() => {
         const cfScript = document.createElement('script');
@@ -32,7 +35,6 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         
-        const rating = (form.elements.namedItem('rating') as HTMLInputElement)?.value;
         const review = (form.elements.namedItem('review') as HTMLInputElement)?.value;
 
         const turnstileToken = (form.elements.namedItem('cf-turnstile-response') as HTMLInputElement)?.value;
@@ -47,7 +49,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
             setLoading(true);
 
             await submitReview(societyId, {
-                "rating": parseInt(rating),
+                "rating": rating,
                 "comment": review
             }, turnstileToken)
 
@@ -71,17 +73,22 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         <form onSubmit={handleSubmit} className='flex flex-col w-2/3 border-2 border-gray-200 shadow-lg bg-white p-6 rounded-2xl min-h-max justify-center'>
             <div className="mt-1 flex flex-row items-center gap-2">
                 <label htmlFor="rating" className="font-semibold text-gray-700">
-                    Rating (0-5):
+                    Rating:
                 </label>
-                <input
-                    id="rating"
-                    type="number"
-                    name="rating"
-                    min={0}
-                    max={5}
-                    required
-                    className="w-24 ml-auto px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
+                <div className='flex flex-col ml-auto'>
+                    <StarRating rating={rating} />
+                    <input
+                        id="rating"
+                        type="range"
+                        name="rating"
+                        defaultValue={0}
+                        min={0}
+                        max={5}
+                        required
+                        className="w-24 mt-auto border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        onChange={(e) => setRating(Number(e.target.value))}
+                        />
+                </div>
             </div>
             <div className="mt-4 flex flex-col gap-2">
                 <label htmlFor="review" className="font-semibold text-gray-700">
