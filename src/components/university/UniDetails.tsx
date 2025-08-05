@@ -2,6 +2,7 @@
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
 import { generateURLSafe } from "@/utils/URLSafe";
+import StarRating from "../StarRating";
 
 export default function UniDetails( { university } : { university: UNIVERSITY }) {
 
@@ -18,14 +19,8 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                 </p>
                 <div className="flex text-lg mt-auto text-yellow-600 text-left">
                     <p className="mr-2">
-                        {Math.round(university.rating * 10) / 10} / 5
+                        <StarRating rating={university.rating} />
                     </p>
-                    <Image
-                        src={'star.svg'}
-                        alt="Image of gold star"
-                        width={20}
-                        height={20}
-                    />
                 </div>
                 <div className="mt-2 text-lg text-left">
                     {university.societyCount} Societ{university.societyCount == 1 ? 'y' : 'ies'}<br />
