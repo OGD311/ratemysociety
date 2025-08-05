@@ -1,5 +1,5 @@
 'use server';
-import { verifyTurnstile } from "@/utils/turnstile";
+import { verifyTurnstile } from "@/utils/Turnstile";
 import { prisma } from "./prisma";
 import { headers } from "next/headers";
 import { calculateSocietyRating } from "./societies";
