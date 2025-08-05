@@ -1,9 +1,31 @@
 import { submitReview } from '@/lib/reviews';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const cfWidget = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const cfScript = document.createElement('script');
+        cfScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        cfScript.async = true;
+        cfScript.onload = () => {
+            // @ts-ignore
+            if (window.turnstile && cfWidget.current) {
+                if (!cfWidget.current.hasChildNodes()) {
+                    // @ts-ignore
+                    window.turnstile.render(
+                        cfWidget.current, 
+                        {
+                            sitekey: "1x00000000000000000000AA"
+                        }
+                    );
+                }
+            }
+        };
+        document.body.appendChild(cfScript);    
+    }, []);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -39,7 +61,6 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
 
     return (
         <>
-        <script src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit' />
         <form onSubmit={handleSubmit} className='flex flex-col w-2/3 mt-10'>
             <div>
                 <label>
@@ -54,7 +75,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
                 </label>
             </div>
             
-            <div className="cf-turnstile" data-sitekey="0x4AAAAAABl8zl5ftj0cIyJj"></div>
+            <div ref={cfWidget} className="cf-turnstile"></div>
 
             <button type="submit" disabled={loading}>{!loading && "Submit"}{loading && "Submitting..."}</button>
             {error && <p className='text-red-500'>Error submitting review - please try again</p>}
