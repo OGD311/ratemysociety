@@ -30,7 +30,7 @@ export default function ReviewGrid({ societyId } : { societyId: number}) {
 
 
     return (
-        <div className="flex w-[80dvw] w-min-[80dvw] w-max-[80dvw] mt-10">
+        <div className="flex w-[80dvw] w-min-[80dvw] w-max-[80dvw] mt-10 items-center justify-center">
 
             {loading && <Loader />}
 
@@ -39,7 +39,7 @@ export default function ReviewGrid({ societyId } : { societyId: number}) {
             {!loading && !error && reviews.length === 0 && <p className="text-center ml-auto mr-auto">No reviews yet.</p>}
 
             {!loading && !error && reviews.length > 0 &&
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-4">
                     {reviews.map( (review) => (
                         <ReviewCard key={review.id} review={review} />
                     ))}
