@@ -23,6 +23,8 @@ model University {
   website String?
   studentsUnion String?
 
+  updated_at DateTime @default(now()) @updatedAt
+
   societies Society[]
 }
 
@@ -34,6 +36,8 @@ model Society {
   rating Float @default(0)
   memberCount Int @default(0)
   website String?
+
+  updated_at DateTime @default(now()) @updatedAt
 
   universityId Int
   university University @relation(fields: [universityId], references: [id])
