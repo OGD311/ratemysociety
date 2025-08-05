@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const cfWidget = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
                     window.turnstile.render(
                         cfWidget.current, 
                         {
-                            sitekey: "1x00000000000000000000AA"
+                            sitekey: "3x00000000000000000000FF"
                         }
                     );
                 }
@@ -38,6 +39,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         
         if (!turnstileToken) {
             setError(true);
+            setErrorMessage("CloudFlare Turnstile ERROR - Please Refresh");
             return;
         }
 
@@ -54,6 +56,11 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         } catch (err) {
             setLoading(false);
             setError(true);
+            if (err && typeof err === 'object' && 'message' in err) {
+                setErrorMessage((err as { message: string }).message);
+            } else {
+                setErrorMessage('An unexpected error occurred.');
+            }
         }
 
         
@@ -78,7 +85,8 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
             <div ref={cfWidget} className="cf-turnstile"></div>
 
             <button type="submit" disabled={loading}>{!loading && "Submit"}{loading && "Submitting..."}</button>
-            {error && <p className='text-red-500'>Error submitting review - please try again</p>}
+            {error && errorMessage == "" && <p className='text-red-500'>Error submitting review - please try again</p>}
+            {error && <p className='text-red-500'>{errorMessage}</p>}
         </form>
         </>
     );
