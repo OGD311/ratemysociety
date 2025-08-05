@@ -1,4 +1,5 @@
 import { REVIEW } from "@/constants/interfaces";
+import StarRating from "../StarRating";
 
 
 export default function ReviewCard({ review } : { review: REVIEW }) {
@@ -6,7 +7,7 @@ export default function ReviewCard({ review } : { review: REVIEW }) {
     return (
         <div className="bg-gray-400 p-4 m-2 text-pretty break-words min-h-50 max-h-50 h-50">
             <div className="flex justify-between">
-                <p>{ review.rating } / 5</p>
+                <StarRating rating={review.rating} />
                 <p>Posted on { new Date(review.posted_at).toLocaleDateString('en-GB') }</p>
             </div>
             {review.comment && 
