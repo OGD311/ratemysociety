@@ -18,8 +18,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
 
             await submitReview(societyId, {
                 "rating": parseInt(rating),
-                "comment": review,
-                "posted_at": new Date(),
+                "comment": review
             })
 
             window.location.reload();
@@ -43,7 +42,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
             <div>
                 <label>
                     Review:
-                    <input type="text" name="review" />
+                    <input type="text" name="review" maxLength={255} />
                 </label>
             </div>
             <button type="submit" disabled={loading}>{!loading && "Submit"}{loading && "Submitting..."}</button>
