@@ -26,7 +26,7 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
             />
             <div className="flex text-lg text-yellow-600 mt-auto">
                 <p className="mr-2">
-                    {university.rating} / 5
+                    {Math.round(university.rating * 10) / 10} / 5
                 </p>
                 <Image
                     src={'star.svg'}

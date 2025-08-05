@@ -18,7 +18,7 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                 </p>
                 <div className="flex text-lg mt-auto text-yellow-600 text-left">
                     <p className="mr-2">
-                        {university.rating} / 5
+                        {Math.round(university.rating * 10) / 10} / 5
                     </p>
                     <Image
                         src={'star.svg'}

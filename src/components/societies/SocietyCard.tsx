@@ -19,7 +19,7 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
             </h1>
             <div className="flex text-lg text-yellow-600 mt-auto">
                 <p className="mr-2">
-                    {society.rating} / 5
+                    {Math.round(society.rating * 10) / 10} / 5
                 </p>
                 <Image
                     src={'star.svg'}
