@@ -1,4 +1,4 @@
-const CF_SECRET_KEY = ""
+const CF_SECRET_KEY = "1x0000000000000000000000000000000AA"
 
 
 export async function verifyTurnstile(token: string, ip?: string) {
