@@ -18,7 +18,7 @@ export interface SOCIETY {
 }
 
 export interface REVIEW {
-    id: number,
+    id?: number,
     rating: number,
     comment?: string | null
     posted_at: Date
