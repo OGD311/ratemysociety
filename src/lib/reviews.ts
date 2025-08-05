@@ -1,6 +1,7 @@
 'use server';
-import { REVIEW } from "@/constants/interfaces";
+import { verifyTurnstile } from "@/utils/turnstile";
 import { prisma } from "./prisma";
+import { headers } from "next/headers";
 
 export const getReviews = async (societyId: number) => {
     return await prisma.review.findMany({
@@ -11,7 +12,14 @@ export const getReviews = async (societyId: number) => {
     })
 }
 
-export const submitReview = async (societyId: number, review: { rating: number, comment?: string }) => {
+export const submitReview = async (societyId: number, review: { rating: number, comment?: string }, turnstileToken: string) => {
+    const headersList = await headers()
+    let ip = headersList.get("CF-Connecting-IP") || ""
+    const isValidToken = await verifyTurnstile(turnstileToken, ip);  
+    
+    if (!isValidToken) {
+        throw new Error("Security Verification Failed")
+    }
     
     if (typeof societyId !== "number" || societyId <= 0) {
         throw new Error("Invalid society ID");
