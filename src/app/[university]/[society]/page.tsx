@@ -1,6 +1,7 @@
 "use client";
 import Loader from "@/components/loader";
 import ReviewCard from "@/components/reviews/ReviewCard";
+import ReviewForm from "@/components/reviews/ReviewForm";
 import ReviewGrid from "@/components/reviews/ReviewGrid";
 import SocietyDetails from "@/components/societies/SocietyDetails";
 import { SOCIETY } from "@/constants/interfaces";
@@ -57,6 +58,7 @@ export default function ShowSociety() {
                 <a onClick={() => goToUniversity(safeUniName)} className="border-2 p-3 rounded-lg relative right-120 bottom-10 hover:bg-blue-400 hover:text-white transition duration-300 cursor-pointer">&lt; {uniFullName}</a>
                 <SocietyDetails society={society} />
 
+                <ReviewForm societyId={society.id} />
                 <ReviewGrid societyId={society.id} />
             </>
             }
