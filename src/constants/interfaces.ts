@@ -6,6 +6,7 @@ export interface UNIVERSITY {
     societyCount: number,
     website?: string | null,
     studentsUnion?: string | null,
+    updated_at: Date
 }
 
 export interface SOCIETY {
@@ -14,7 +15,8 @@ export interface SOCIETY {
     description?: string | null,
     rating: number,
     memberCount: number,
-    website?: string | null
+    website?: string | null,
+    updated_at: Date
 }
 
 export interface REVIEW {
