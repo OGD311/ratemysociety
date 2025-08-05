@@ -2,7 +2,7 @@ import { SOCIETY } from "@/constants/interfaces";
 import { getSocieties } from "@/lib/societies";
 import { useEffect, useState } from "react";
 import SocietyCard from "./SocietyCard";
-import Loader from "../loader";
+import Loader from "../Loader";
 
 
 export default function SocietyGrid({ universityId } : { universityId: number }) {

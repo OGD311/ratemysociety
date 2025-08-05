@@ -3,7 +3,7 @@ import { getUniversities } from "@/lib/universities";
 import { useEffect, useState } from "react";
 import UniCard from "./UniCard";
 import { UNIVERSITY } from "@/constants/interfaces";
-import Loader from "../loader";
+import Loader from "../Loader";
 
 export default function UniGrid() {
     const [loading, setLoading] = useState(true);

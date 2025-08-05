@@ -1,6 +1,6 @@
 import { REVIEW } from "@/constants/interfaces";
 import { useEffect, useState } from "react";
-import Loader from "@/components/loader";
+import Loader from "@/components/Loader";
 import ReviewCard from "./ReviewCard";
 import { getReviews } from "@/lib/reviews";
 
@@ -39,7 +39,7 @@ export default function ReviewGrid({ societyId } : { societyId: number}) {
             {!loading && !error && reviews.length === 0 && <p className="text-center ml-auto mr-auto">No reviews yet.</p>}
 
             {!loading && !error && reviews.length > 0 &&
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-2">
                     {reviews.map( (review) => (
                         <ReviewCard key={review.id} review={review} />
                     ))}
