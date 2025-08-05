@@ -9,7 +9,12 @@ export default function ReviewCard({ review } : { review: REVIEW }) {
                 <p>{ review.rating } / 5</p>
                 <p>Posted on { new Date(review.posted_at).toLocaleDateString('en-GB') }</p>
             </div>
-            <p className="mt-3">{ review.comment }</p>
+            {review.comment && 
+                <p className="mt-3">{ review.comment }</p>
+            }
+            {!review.comment &&
+                <p className="mt-3">No Comment Left</p>
+            }
         </div>
     )
 }
