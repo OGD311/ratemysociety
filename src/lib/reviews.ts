@@ -18,7 +18,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
     const isValidToken = await verifyTurnstile(turnstileToken, ip);  
     
     if (!isValidToken) {
-        throw new Error("Security Verification Failed")
+        throw new Error("Security Verification Failed - Please Refresh")
     }
     
     if (typeof societyId !== "number" || societyId <= 0) {
