@@ -39,7 +39,7 @@ export default function ReviewGrid({ societyId } : { societyId: number}) {
             {!loading && !error && reviews.length === 0 && <p className="text-center ml-auto mr-auto">No reviews yet.</p>}
 
             {!loading && !error && reviews.length > 0 &&
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 w-full">
                     {reviews.map( (review) => (
                         <ReviewCard key={review.id} review={review} />
                     ))}
