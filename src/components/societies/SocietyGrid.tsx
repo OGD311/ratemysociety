@@ -62,18 +62,25 @@ export default function SocietyGrid({ universityId } : { universityId: number })
     }
 
     return (
-        <div className="flex flex-col items-center">
-            <input type="text" placeholder="Search" onChange={searchSocieties} className="mt-10"/>
+        <div className="flex flex-col items-center w-full px-4 mt-15">
+            <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl gap-4 mb-8">
+            <input
+                type="text"
+                placeholder="Search universities..."
+                onChange={searchSocieties}
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            />
             <select
-                className="mt-4 mb-6"
+                className="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                 onChange={filterSocieties}
                 defaultValue="az"
             >
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
                 <option value="best">Best Rated</option>
-                <option value="reviews">Most Reviews</option>
+                <option value="soccount">Number of Societies</option>
             </select>
+            </div>
 
             {loading && <Loader />}
 

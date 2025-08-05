@@ -63,10 +63,16 @@ export default function UniGrid() {
     }
 
     return(
-        <div className="flex flex-col items-center">
-            <input type="text" placeholder="Search" onChange={searchUniversities} />
+        <div className="flex flex-col items-center w-full px-4">
+            <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl gap-4 mb-8">
+            <input
+                type="text"
+                placeholder="Search universities..."
+                onChange={searchUniversities}
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            />
             <select
-                className="mt-4 mb-6"
+                className="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                 onChange={filterUniversities}
                 defaultValue="az"
             >
@@ -75,20 +81,25 @@ export default function UniGrid() {
                 <option value="best">Best Rated</option>
                 <option value="soccount">Number of Societies</option>
             </select>
+            </div>
 
             {loading && <Loader />}
 
-            {!loading && error && <p>Something went wrong. Please try again</p>}
+            {!loading && error && (
+            <p className="text-red-600 font-semibold mt-8">Something went wrong. Please try again.</p>
+            )}
 
-            {!loading && !error && filterUniversities.length === 0 && <p>No universities found.</p>}
+            {!loading && !error && filteredUniversities.length === 0 && (
+            <p className="text-gray-500 mt-8">No universities found.</p>
+            )}
 
-            {!loading && !error && filterUniversities.length > 0 &&    
-                <div className="grid grid-cols-4">
-                    {filteredUniversities.map((uni) => (
-                        <UniCard key={uni.id} university={uni} />
-                    ))}
-                </div>
-            }
+            {!loading && !error && filteredUniversities.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-6xl">
+                {filteredUniversities.map((uni) => (
+                <UniCard key={uni.id} university={uni} />
+                ))}
+            </div>
+            )}
         </div>
     )
 }
