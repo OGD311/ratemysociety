@@ -19,7 +19,7 @@ export default function SocietyGrid({ universityId } : { universityId: number })
                 setLoading(true);
                 const societies = await getSocieties(universityId);
                 setSocieties(societies);
-                setFilteredSocieties(societies);
+                setFilteredSocieties(societies.sort((a, b) => a.name.localeCompare(b.name)));
                 setError(false);
             } catch (e) {
                 setError(true);
@@ -32,7 +32,7 @@ export default function SocietyGrid({ universityId } : { universityId: number })
     }, [])
 
 
-    function filterUniversities(e: React.ChangeEvent<HTMLInputElement>) {
+    function searchSocieties(e: React.ChangeEvent<HTMLInputElement>) {
         const search = e.target?.value.toLowerCase().trim();
 
         if (search.length === 0) {
@@ -46,9 +46,34 @@ export default function SocietyGrid({ universityId } : { universityId: number })
         }
     }
 
+    function filterSocieties(e: React.ChangeEvent<HTMLSelectElement>) {
+        const value = e.target.value;
+        let sorted = [...filteredSocieties];
+        if (value === "az") {
+            sorted.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (value === "za") {
+            sorted.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (value === "best") {
+            sorted.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        } else if (value === "reviews") {
+            sorted.sort((a, b) => (b._count.reviews ?? 0) - (a._count.reviews ?? 0));
+        }
+        setFilteredSocieties(sorted);
+    }
+
     return (
         <div className="flex flex-col items-center">
-            <input type="text" placeholder="Search" onChange={filterUniversities} className="mt-10"/>
+            <input type="text" placeholder="Search" onChange={searchSocieties} className="mt-10"/>
+            <select
+                className="mt-4 mb-6"
+                onChange={filterSocieties}
+                defaultValue="az"
+            >
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="best">Best Rated</option>
+                <option value="reviews">Most Reviews</option>
+            </select>
 
             {loading && <Loader />}
 
