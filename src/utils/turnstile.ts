@@ -1,10 +1,10 @@
-const CF_SECRET_KEY = "1x0000000000000000000000000000000AA"
-
-
 export async function verifyTurnstile(token: string, ip?: string) {
     const formData = new FormData();
 
-    formData.append('secret', CF_SECRET_KEY);
+    if (!process.env.CF_SECRET_KEY) {
+        throw new Error("CF_SECRET_KEY environment variable is not set");
+    }
+    formData.append('secret', process.env.CF_SECRET_KEY);
     formData.append('response', token);
     if (ip) {formData.append('remoteip', ip);}
 
