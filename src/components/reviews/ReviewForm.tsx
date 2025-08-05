@@ -39,7 +39,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         
         if (!turnstileToken) {
             setError(true);
-            setErrorMessage("CloudFlare Turnstile ERROR - Please Refresh");
+            setErrorMessage("Please complete verification");
             return;
         }
 
@@ -68,23 +68,44 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
 
     return (
         <>
-        <form onSubmit={handleSubmit} className='flex flex-col w-2/3 mt-10'>
-            <div>
-                <label>
+        <form onSubmit={handleSubmit} className='flex flex-col w-2/3 border-2 p-3 rounded-2xl min-h-max justify-center'>
+            <div className="mt-1 flex flex-row items-center gap-2">
+                <label htmlFor="rating" className="font-semibold text-gray-700">
                     Rating (0-5):
-                    <input type="number" name="rating" min={0} max={5} required />
                 </label>
+                <input
+                    id="rating"
+                    type="number"
+                    name="rating"
+                    min={0}
+                    max={5}
+                    required
+                    className="w-24 ml-auto px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
             </div>
-            <div>
-                <label>
+            <div className="mt-4 flex flex-col gap-2">
+                <label htmlFor="review" className="font-semibold text-gray-700">
                     Review:
-                    <input type="text" name="review" maxLength={255} />
                 </label>
+                <input
+                    id="review"
+                    type="text"
+                    name="review"
+                    maxLength={255}
+                    className="px-3 mb-5 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Share your thoughts..."
+                />
             </div>
-            
             <div ref={cfWidget} className="cf-turnstile"></div>
 
-            <button type="submit" disabled={loading}>{!loading && "Submit"}{loading && "Submitting..."}</button>
+            <button
+                type="submit"
+                disabled={loading}
+                className={`px-4 py-2 mt-auto rounded bg-blue-500 text-white ${loading ? "bg-gray-300 text-gray-400 cursor-not-allowed" : "hover:bg-blue-600"}`}
+            >
+                {!loading && "Submit"}
+                {loading && "Submitting..."}
+            </button>
             {error && errorMessage == "" && <p className='text-red-500'>Error submitting review - please try again</p>}
             {error && <p className='text-red-500'>{errorMessage}</p>}
         </form>
