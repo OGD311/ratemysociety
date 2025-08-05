@@ -11,13 +11,51 @@ export const getReviews = async (societyId: number) => {
     })
 }
 
-export const submitReview = async (societyId: number, review: any) => {
+export const submitReview = async (societyId: number, review: { rating: number, comment?: string }) => {
+    
+    if (typeof societyId !== "number" || societyId <= 0) {
+        throw new Error("Invalid society ID");
+    }
+
+    let rating = review.rating;
+    if (typeof(rating) != "number") throw new Error("Rating must be a number");
+    rating = Math.min(Math.max(rating, 0), 5);
+    
+    let comment = review.comment;
+    if (comment) {
+
+        comment = comment.replace(/<[^>]*>/g, '');
+        comment = comment.replace(/[<>\"'&]/g, '');
+        comment = comment.trim();
+        
+        if (comment.length > 255) {
+            const punctuationRegex = /[.!?]/g;
+            let lastPunctuation = -1;
+            let match;
+            while ((match = punctuationRegex.exec(comment)) !== null) {
+                if (match.index < 255) {
+                    lastPunctuation = match.index;
+                } else {
+                    break;
+                }
+            }
+            if (lastPunctuation !== -1) {
+                comment = comment.slice(0, lastPunctuation + 1);
+            } else {
+                comment = comment.slice(0, 255);
+            }
+        }
+        
+        if (comment.length === 0) {
+            comment = undefined;
+        }
+    }
 
     return await prisma.review.create({
         data: {
-            rating: review.rating,
-            comment: review.comment ?? null,
-            posted_at: review.posted_at,
+            rating: rating,
+            comment: comment ?? null,
+            posted_at: new Date(),
             societyId: societyId,
         }
     });
