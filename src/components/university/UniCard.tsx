@@ -13,7 +13,7 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
     const safeName = generateURLSafe(university.name);
 
     return (
-        <div onClick={() => goToUniversity(safeName)} className="contain-content flex flex-col items-center h-72 min-h-72 p-4 pt-2 m-10 border-2 border-gray-400 shadow-lg max-w-54 max-h-72 w-54 rounded-xl shadow-gray-500 hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
+        <div onClick={() => goToUniversity(safeName)} className="contain-content flex flex-col items-center h-72 min-h-72 p-4 pt-2 m-10 border-2 border-gray-200 shadow-lg max-w-64 max-h-72 w-64 min-w-64 rounded-xl hover:-translate-y-3.5 hover:shadow-2xl transition duration-200 cursor-pointer">
             <h1 className="mt-2 text-2xl text-center">
                 { university.name }
             </h1>
@@ -37,6 +37,9 @@ export default function UniCard( { university } : { university: UNIVERSITY }) {
             </div>
             <div className="mt-2 text-lg">
                 {university.societyCount} societ{university.societyCount == 1 ? 'y' : 'ies'}
+            </div>
+            <div className="mt-auto text-sm text-gray-500">
+                Last updated: {new Date(university.updated_at ?? '').toLocaleDateString('en-GB')}
             </div>
         </div>
     )
