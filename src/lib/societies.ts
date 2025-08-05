@@ -1,6 +1,7 @@
 'use server';
 import { SOCIETY } from "@/constants/interfaces";
 import { prisma } from "./prisma";
+import { calculateUniversityRating } from "./universities";
 
 
 export const getSocieties = async (universityId: number) => {
@@ -50,4 +51,6 @@ export const calculateSocietyRating = async (societyId: number) => {
         where: { id: societyId },
         data: { rating: average }
     });
+
+    return await calculateUniversityRating(societyId);
 }

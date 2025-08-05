@@ -51,3 +51,27 @@ export const updateSocietyCount = async () => {
         });
     }
 }
+
+
+export const calculateUniversityRating = async (societyId: number) => {
+    const society = await prisma.society.findUnique({
+        where: { id: societyId },
+        select: { universityId: true }
+    });
+    if (!society) throw new Error("Society not found");
+    const universityId = society.universityId;
+    
+    const societies = await prisma.society.findMany({
+        where: { universityId },
+        select: { rating: true }
+    });
+
+    const ratings = societies.map(s => s.rating ?? 0);
+    const total = ratings.reduce((sum, rating) => sum + rating, 0);
+    const average = ratings.length ? total / ratings.length : 0;
+
+    await prisma.university.update({
+        where: { id: universityId },
+        data: { rating: average }
+    });
+}
