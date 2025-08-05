@@ -56,7 +56,7 @@ export default function ShowSociety() {
             {!loading && !error && society !== null &&
             <> 
                 <a onClick={() => goToUniversity(safeUniName)} className="border-2 p-3 rounded-lg relative right-120 bottom-10 hover:bg-blue-400 hover:text-white transition duration-300 cursor-pointer">&lt; {uniFullName}</a>
-                <div className="flex space-x-40">
+                <div className="flex space-x-40 w-fit">
                     <SocietyDetails society={society} universityName={uniFullName} />
                     <ReviewForm societyId={society.id} />
                 </div>
