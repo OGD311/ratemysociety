@@ -6,7 +6,7 @@ export interface UNIVERSITY {
     societyCount: number,
     website?: string | null,
     studentsUnion?: string | null,
-    updated_at: Date
+    updated_at?: Date
 }
 
 export interface SOCIETY {

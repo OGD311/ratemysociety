@@ -38,7 +38,13 @@ export default function ShowUni() {
         <div>
             {loading && <Loader />}
             
-            {!loading && error && <p>404 - University not found</p> }
+            {!loading && error && 
+            <div className="text-center">
+            <h1 className="text-7xl font-bold mb-5">Error 404</h1>
+            <h3 className="text-4xl mb-20">University '{fullUniversityName}' not found</h3>
+            <a href="/" className="text-2xl border-2 rounded-lg p-3 hover:bg-amber-500 transition shadow-gray-500 duration-200 hover:shadow-2xl">Home</a>
+            </div>
+            }
 
             {!loading && !error && university === null && <p>Something went wrong. Please try again</p>}
 
