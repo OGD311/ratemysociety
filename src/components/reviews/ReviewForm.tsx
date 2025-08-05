@@ -33,7 +33,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='flex flex-col w-2/3 mt-10'>
             <div>
                 <label>
                     Rating (0-5):
