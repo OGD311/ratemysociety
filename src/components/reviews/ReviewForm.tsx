@@ -68,7 +68,7 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
 
     return (
         <>
-        <form onSubmit={handleSubmit} className='flex flex-col w-2/3 border-2 p-3 rounded-2xl min-h-max justify-center'>
+        <form onSubmit={handleSubmit} className='flex flex-col w-2/3 border-2 border-gray-200 shadow-lg bg-white p-6 rounded-2xl min-h-max justify-center'>
             <div className="mt-1 flex flex-row items-center gap-2">
                 <label htmlFor="rating" className="font-semibold text-gray-700">
                     Rating (0-5):
