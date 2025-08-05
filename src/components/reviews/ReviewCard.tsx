@@ -1,5 +1,5 @@
 import { REVIEW } from "@/constants/interfaces";
-import StarRating from "../stars/StarRating";
+import StarRating from "../StarRating";
 
 
 export default function ReviewCard({ review } : { review: REVIEW }) {
