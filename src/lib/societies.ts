@@ -7,6 +7,13 @@ export const getSocieties = async (universityId: number) => {
     return await prisma.society.findMany({
         where: {
             universityId: universityId
+        },
+        include: {
+            _count: {
+                select: {
+                    reviews: true
+                }
+            }
         }
     })
 }

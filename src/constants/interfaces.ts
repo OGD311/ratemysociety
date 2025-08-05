@@ -16,7 +16,11 @@ export interface SOCIETY {
     rating: number,
     memberCount: number,
     website?: string | null,
-    updated_at: Date
+    updated_at: Date,
+
+    _count: {
+        reviews: number
+    }
 }
 
 export interface REVIEW {

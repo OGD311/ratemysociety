@@ -27,6 +27,9 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
                     width={20}
                     height={20}
                 />
+                <p className="ml-2 text-black">
+                    ({society._count.reviews})
+                </p>
             </div>
             <div className="mt-2 text-lg">
                 Around {society.memberCount} member{society.memberCount == 1 ? '' : 's'}
