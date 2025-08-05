@@ -4,6 +4,7 @@ import { prisma } from "./prisma";
 
 export const getReviews = async (societyId: number) => {
     return await prisma.review.findMany({
+        orderBy: { posted_at: 'desc' },
         where: {
             societyId: societyId
         }
@@ -15,7 +16,7 @@ export const submitReview = async (societyId: number, review: any) => {
     return await prisma.review.create({
         data: {
             rating: review.rating,
-            comment: review.comment,
+            comment: review.comment ?? null,
             posted_at: review.posted_at,
             societyId: societyId,
         }
