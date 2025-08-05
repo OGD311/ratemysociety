@@ -1,20 +1,35 @@
 
 import { submitReview } from '@/lib/reviews';
-import React from 'react';
+import { redirect } from 'next/navigation';
+import React, { useState } from 'react';
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const rating = (form.elements.namedItem('rating') as HTMLInputElement)?.value;
-        console.log('Form submitted for societyId:', societyId, 'Rating:', rating);
+        const review = (form.elements.namedItem('review') as HTMLInputElement)?.value;
 
-        submitReview(societyId, {
-            "rating": 0,
-            "comment": "",
-            "posted_at": new Date(),
-        })
+        try {
+            setLoading(true);
+
+            await submitReview(societyId, {
+                "rating": parseInt(rating),
+                "comment": review,
+                "posted_at": new Date(),
+            })
+
+            window.location.reload();
+        
+        } catch (err) {
+            setLoading(false);
+            setError(true);
+        }
+
+        
     }
 
     return (
@@ -28,10 +43,11 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
             <div>
                 <label>
                     Review:
-                    <input type="text" name="review" required />
+                    <input type="text" name="review" />
                 </label>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={loading}>{!loading && "Submit"}{loading && "Submitting..."}</button>
+            {error && <p className='text-red-500'>Error submitting review - please try again</p>}
         </form>
     );
 }
