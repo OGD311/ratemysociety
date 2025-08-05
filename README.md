@@ -7,4 +7,4 @@
 
 ### Vision
 
-The UK has nearly **150 universities**, each averaging around **200 societies**—totaling over **30,000 societies** nationwide. That's a significant amount of data, and full coverage will take time. However, the goal is to eventually support **every university in the UK**.
+The UK has nearly **150 universities**, each averaging around **200 societies** - totaling over **30,000 societies** nationwide. That's a significant amount of data, and full coverage will take time. However, the goal is to eventually support **every university in the UK**.
