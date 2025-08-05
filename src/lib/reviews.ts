@@ -2,6 +2,7 @@
 import { verifyTurnstile } from "@/utils/turnstile";
 import { prisma } from "./prisma";
 import { headers } from "next/headers";
+import { calculateSocietyRating } from "./societies";
 
 export const getReviews = async (societyId: number) => {
     return await prisma.review.findMany({
@@ -59,7 +60,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
         }
     }
 
-    return await prisma.review.create({
+    await prisma.review.create({
         data: {
             rating: rating,
             comment: comment ?? null,
@@ -67,4 +68,6 @@ export const submitReview = async (societyId: number, review: { rating: number, 
             societyId: societyId,
         }
     });
+
+    return await calculateSocietyRating(societyId);
 }

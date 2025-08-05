@@ -33,3 +33,21 @@ export const getSocietyDetails = async (universityName: string, societyName: str
 
     return results[0];
 }
+
+
+export const calculateSocietyRating = async (societyId: number) => {
+    const reviews = await prisma.review.findMany({
+        where: {
+            societyId: societyId
+        },
+        select: {
+            rating: true
+        }
+    });
+    const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+    const average = reviews.length ? total / reviews.length : 0;
+    await prisma.society.update({
+        where: { id: societyId },
+        data: { rating: average }
+    });
+}
