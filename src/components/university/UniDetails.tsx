@@ -14,7 +14,7 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                     { university.name }
                 </h1>
                 <p className="text-wrap w-3/4 text-left">
-                    { university.description }
+                    { university.description }                    
                 </p>
                 <div className="flex text-lg mt-auto text-yellow-600 text-left">
                     <p className="mr-2">
@@ -28,8 +28,8 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                     />
                 </div>
                 <div className="mt-2 text-lg text-left">
-                    {university.societyCount} societ{university.societyCount == 1 ? 'y' : 'ies'}
-
+                    {university.societyCount} Societ{university.societyCount == 1 ? 'y' : 'ies'}<br />
+                    Last updated: { university.updated_at?.toLocaleDateString?.() }
                     {university.website &&
                     <a href={university.website} className="ml-10 border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800">Website</a>
                     }
