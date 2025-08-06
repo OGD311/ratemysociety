@@ -5,7 +5,7 @@ import StarRating from "../StarRating";
 export default function ReviewCard({ review } : { review: REVIEW }) {
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 m-4 min-h-54 max-h-54 h-54 flex flex-col justify-between transition-transform hover:scale-105">
+        <div className="bg-white shadow-md rounded-lg p-6 m-4 min-h-54 max-h-54 h-54 flex flex-col justify-between">
             <div className="flex justify-between items-center mb-2">
             <StarRating rating={review.rating} />
             <span className="text-sm text-gray-500">
