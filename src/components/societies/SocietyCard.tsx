@@ -3,6 +3,7 @@ import { SOCIETY } from "@/constants/interfaces"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { generateURLSafe } from "@/utils/URLSafe";
+import StarRating from "../StarRating";
 
 export default function SocietyCard( { society } : { society: SOCIETY }) {
     const safeUniName = useParams<{ university: string; }>().university;
@@ -21,14 +22,7 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
             {society.name}
             </h1>
             <div className="flex items-center text-lg text-yellow-600 mb-2">
-            <span className="font-medium">{Math.round(society.rating * 10) / 10} / 5</span>
-            <Image
-                src={'/star.svg'}
-                alt="Gold star"
-                width={20}
-                height={20}
-                className="mx-1"
-            />
+            <StarRating rating={society.rating} />
             <span className="ml-1 text-gray-600 text-base">({society._count.reviews})</span>
             </div>
             <div className="mt-auto text-base text-gray-700">
