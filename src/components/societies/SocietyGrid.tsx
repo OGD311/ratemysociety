@@ -56,7 +56,7 @@ export default function SocietyGrid({ universityId } : { universityId: number })
         } else if (value === "best") {
             sorted.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
         } else if (value === "soccount") {
-            sorted.sort((a, b) => (b._count.reviews ?? 0) - (a._count.reviews ?? 0));
+            sorted.sort((a, b) => (b._count?.reviews ?? 0) - (a._count?.reviews ?? 0));
         } else if (value === "memcount") {
             sorted.sort((a, b) => (b.memberCount ?? 0) - (a.memberCount ?? 0));
         }
