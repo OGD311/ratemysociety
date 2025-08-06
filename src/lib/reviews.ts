@@ -4,6 +4,8 @@ import { prisma } from "./prisma";
 import { headers } from "next/headers";
 import { calculateSocietyRating } from "./societies";
 import { Filter } from "bad-words";
+import { getUserOrCreate } from "./user";
+import { createHash } from "crypto";
 
 const filter = new Filter();
 
@@ -16,7 +18,7 @@ export const getReviews = async (societyId: number) => {
     })
 }
 
-export const submitReview = async (societyId: number, review: { rating: number, comment?: string }, turnstileToken: string) => {
+export const submitReview = async (societyId: number, review: { rating: number, comment?: string }, turnstileToken: string, fingerprint: string) => {
     const headersList = await headers()
     let ip = headersList.get("CF-Connecting-IP") || ""
     const isValidToken = await verifyTurnstile(turnstileToken, ip);  
@@ -24,6 +26,10 @@ export const submitReview = async (societyId: number, review: { rating: number, 
     if (!isValidToken) {
         throw new Error("Security Verification Failed - Please Refresh")
     }
+
+    const hash = createHash("sha256").update(ip + fingerprint).digest("hex");
+    const user = await getUserOrCreate(hash, fingerprint);
+    if (user.is_banned) { throw new Error("IP Banned for breaching TOS")}
     
     if (typeof societyId !== "number" || societyId <= 0) {
         throw new Error("Invalid society ID");
@@ -71,6 +77,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
             comment: comment,
             posted_at: new Date(),
             societyId: societyId,
+            userId: user.id
         }
     });
 

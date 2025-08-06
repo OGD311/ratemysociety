@@ -1,7 +1,9 @@
 import { submitReview } from '@/lib/reviews';
 import React, { useEffect, useRef, useState } from 'react';
-import StarRating from '../stars/StarRating';
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import StarInput from '../stars/StarInput';
+
+const fpPromise = FingerprintJS.load()
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);
@@ -63,11 +65,13 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
 
         try {
             setLoading(true);
+            const fp = await fpPromise;
+            const fpResult = await fp.get()
 
             await submitReview(societyId, {
                 "rating": rating,
                 "comment": review
-            }, turnstileToken)
+            }, turnstileToken, fpResult.visitorId)
 
             window.location.reload();
         
