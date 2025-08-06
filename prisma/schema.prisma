@@ -51,7 +51,7 @@ model Review {
   rating Float
   comment String
   posted_at DateTime
-  is_updated Boolean @default(false)
+  updated_at DateTime @default(now()) @updatedAt
 
   societyId Int
   society Society @relation(fields: [societyId], references: [id])
