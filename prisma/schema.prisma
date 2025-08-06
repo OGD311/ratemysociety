@@ -49,7 +49,7 @@ model Society {
 model Review {
   id Int @id @default(autoincrement())
   rating Float
-  comment String?
+  comment String
   posted_at DateTime
 
   societyId Int

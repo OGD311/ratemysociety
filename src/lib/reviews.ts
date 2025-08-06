@@ -58,17 +58,17 @@ export const submitReview = async (societyId: number, review: { rating: number, 
             }
         }
         
-        if (comment.length === 0) {
-            comment = undefined;
-        }
+        if (comment.length === 0) { throw new Error("Comment cannot be blank"); }
 
         if (comment && comment != filter.clean(comment)) { throw new Error("No Profanity Allowed"); }
+    } else {
+        throw new Error("Review Comment cannot be blank");
     }
 
     await prisma.review.create({
         data: {
             rating: rating,
-            comment: comment ?? null,
+            comment: comment,
             posted_at: new Date(),
             societyId: societyId,
         }
