@@ -32,5 +32,5 @@ export default function StarRating({ rating } : {rating: number}) {
     }
   }
 
-  return <span style={{ display: 'inline-flex' }}>{stars}</span>;
+  return <span style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>{stars}</span>;
 };
