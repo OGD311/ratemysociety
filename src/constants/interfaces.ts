@@ -27,7 +27,8 @@ export interface REVIEW {
     id?: number,
     rating: number,
     comment: string,
-    posted_at: Date
+    posted_at: Date,
+    is_updated?: Boolean
 }
 
 export interface USER {
