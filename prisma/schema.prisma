@@ -54,4 +54,16 @@ model Review {
 
   societyId Int
   society Society @relation(fields: [societyId], references: [id])
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  ip String
+  fingerprint String
+  is_banned Boolean @default(false)
+
+  reviews Review[]
 }
