@@ -40,6 +40,11 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
         const form = event.target as HTMLFormElement;
         
         const review = (form.elements.namedItem('review') as HTMLInputElement)?.value;
+        if (rating == 0) {
+            setError(true);
+            setErrorMessage("Must give a rating between 1 - 5 stars");
+            return;
+        }
 
         const turnstileToken = (form.elements.namedItem('cf-turnstile-response') as HTMLInputElement)?.value;
         
@@ -98,6 +103,9 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
             </div>
             <div ref={cfWidget} className="cf-turnstile"></div>
 
+            {error && errorMessage == "" && <p className='text-red-500'>Error submitting review - please try again</p>}
+            {error && <p className='text-red-500'>{errorMessage}</p>}
+
             <button
                 type="submit"
                 disabled={loading}
@@ -106,8 +114,6 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
                 {!loading && "Submit"}
                 {loading && "Submitting..."}
             </button>
-            {error && errorMessage == "" && <p className='text-red-500'>Error submitting review - please try again</p>}
-            {error && <p className='text-red-500'>{errorMessage}</p>}
         </form>
         </>
     );
