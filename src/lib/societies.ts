@@ -10,6 +10,7 @@ export const getSocieties = async (universityId: number) => {
             universityId: universityId
         },
         include: {
+            category: true,
             _count: {
                 select: {
                     reviews: true
@@ -22,7 +23,8 @@ export const getSocieties = async (universityId: number) => {
 
 export const getSocietyDetails = async (universityName: string, societyName: string) => {
     const results: SOCIETY[] = await prisma.$queryRaw`
-        SELECT s.*, c.name as category_name, c.colour as category_colour FROM Society s
+        SELECT s.*, c.name as category_name, c.colour as category_colour
+        FROM Society s
         INNER JOIN University u ON s.universityId = u.id
         LEFT JOIN Category c ON s.categoryId = c.id
         WHERE LOWER(s.name) = LOWER(${societyName}) AND LOWER(u.name) = LOWER(${universityName})
@@ -33,7 +35,20 @@ export const getSocietyDetails = async (universityName: string, societyName: str
         throw new Error('Society not found');
     }
 
-    return results[0];
+    const societyDetails = results[0];
+    societyDetails.category = {
+        // @ts-ignore
+        name: societyDetails.category_name,
+        // @ts-ignore
+        colour: societyDetails.category_colour
+    };
+
+    // @ts-ignore
+    delete societyDetails.category_name;
+    // @ts-ignore
+    delete societyDetails.category_colour;
+
+    return societyDetails;
 }
 
 
