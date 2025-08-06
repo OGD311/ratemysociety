@@ -44,8 +44,8 @@ model Society {
 
   reviews Review[]
   
-  category   Category   @relation(fields: [categoryId], references: [id])
-  categoryId Int        @unique @default(0)
+  category   Category?   @relation(fields: [categoryId], references: [id])
+  categoryId Int?        @unique @default(0)
 }
 
 model Category {
