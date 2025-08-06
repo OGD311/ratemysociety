@@ -17,8 +17,8 @@ export default function SocietyDetails( { society, universityName } : { society:
                 <span className="text-gray-500">
                     {society.name} is a{' '}
                     <CategoryPill category={ {
-                        "name": society.category_name ?? null,
-                        "colour": society.category_colour ?? null
+                        "name": society.category?.name ?? null,
+                        "colour": society.category?.colour ?? null
                     } } /> 
                     {' '}category society at {UniNameArticle(universityName)} <span className="font-semibold">{universityName}</span>
                 </span>
@@ -27,8 +27,8 @@ export default function SocietyDetails( { society, universityName } : { society:
             <div className="flex flex-col items-baseline mt-6">
                 {society.description ? 
                     <CategoryPill category={ {
-                        "name": society.category_name ?? null,
-                        "colour": society.category_colour ?? null
+                        "name": society.category?.name ?? null,
+                        "colour": society.category?.colour ?? null
                     } } /> 
                     :
                     ""
