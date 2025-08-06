@@ -71,15 +71,22 @@ export const submitReview = async (societyId: number, review: { rating: number, 
         throw new Error("Review Comment cannot be blank");
     }
 
-    await prisma.review.create({
-        data: {
-            rating: rating,
-            comment: comment,
-            posted_at: new Date(),
-            societyId: societyId,
-            userId: user.id
+    try {
+        await prisma.review.create({
+            data: {
+                rating: rating,
+                comment: comment,
+                posted_at: new Date(),
+                societyId: societyId,
+                userId: user.id
+            }
+        });
+    } catch (err: any) {
+        if (err.code === "P2002") {
+            throw new Error("You have already submitted a review!");
         }
-    });
+        throw new Error("Error creating Review");
+    }
 
     return await calculateSocietyRating(societyId);
 }
