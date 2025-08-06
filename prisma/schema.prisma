@@ -51,12 +51,15 @@ model Review {
   rating Float
   comment String
   posted_at DateTime
+  is_updated Boolean @default(false)
 
   societyId Int
   society Society @relation(fields: [societyId], references: [id])
 
   userId Int
   user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, societyId])
 }
 
 model User {
