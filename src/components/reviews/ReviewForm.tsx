@@ -1,6 +1,6 @@
 import { submitReview } from '@/lib/reviews';
 import React, { useEffect, useRef, useState } from 'react';
-import StarRating from '../StarRating';
+import StarRating from '../stars/StarRating';
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);

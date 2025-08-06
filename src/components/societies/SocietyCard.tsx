@@ -1,9 +1,8 @@
 "use client";
 import { SOCIETY } from "@/constants/interfaces"
-import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { generateURLSafe } from "@/utils/URLSafe";
-import StarRating from "../StarRating";
+import StarRating from "../stars/StarRating";
 
 export default function SocietyCard( { society } : { society: SOCIETY }) {
     const safeUniName = useParams<{ university: string; }>().university;
