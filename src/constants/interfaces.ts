@@ -18,6 +18,8 @@ export interface SOCIETY {
     website?: string | null,
     updated_at: Date,
 
+    category?: string,
+
     _count: {
         reviews: number
     }
