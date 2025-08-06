@@ -83,10 +83,28 @@ export const submitReview = async (societyId: number, review: { rating: number, 
         });
     } catch (err: any) {
         if (err.code === "P2002") {
-            throw new Error("You have already submitted a review!");
-        }
-        throw new Error("Error creating Review");
-    }
+            const existingReview = await prisma.review.findUnique({
+                where: {
+                    userId_societyId: {
+                        userId: user.id,
+                        societyId: societyId,
+                    }
+                }
+            });
 
+            if (existingReview) {
+                await prisma.review.update({
+                    where: { id: existingReview.id },
+                    data: {
+                        rating: rating,
+                        comment: comment,
+                        is_updated: true 
+                    },
+                });
+            }
+        } else {
+            throw new Error("Could not submit - Please try again");
+        }
+    }
     return await calculateSocietyRating(societyId);
 }

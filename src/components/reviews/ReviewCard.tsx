@@ -10,6 +10,7 @@ export default function ReviewCard({ review } : { review: REVIEW }) {
             <StarRating rating={review.rating} />
             <span className="text-sm text-gray-500">
                 {new Date(review.posted_at).toLocaleDateString('en-GB')}
+                {review.is_updated && " (Updated)"}
             </span>
             </div>
             <div className="flex-1 flex items-center">
