@@ -18,11 +18,11 @@ export default function SocietyDetails( { society, universityName } : { society:
                 </p>
             )}
             </div>
-            <div className="flex flex-col mt-6">
-            <StarRating rating={society.rating} />
-            <div className="text-md mt-3 text-gray-600">
-                Around <span className="font-semibold">{society.memberCount}</span> member{society.memberCount == 1 ? '' : 's'}
-            </div>
+            <div className="flex flex-col items-baseline mt-6">
+                <StarRating rating={society.rating} />
+                <div className="text-md mt-3 text-gray-600">
+                    Around <span className="font-semibold">{society.memberCount}</span> member{society.memberCount == 1 ? '' : 's'}
+                </div>
             </div>
         </div>
     )
