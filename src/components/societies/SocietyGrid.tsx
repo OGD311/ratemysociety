@@ -55,8 +55,10 @@ export default function SocietyGrid({ universityId } : { universityId: number })
             sorted.sort((a, b) => b.name.localeCompare(a.name));
         } else if (value === "best") {
             sorted.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
-        } else if (value === "reviews") {
+        } else if (value === "soccount") {
             sorted.sort((a, b) => (b._count.reviews ?? 0) - (a._count.reviews ?? 0));
+        } else if (value === "memcount") {
+            sorted.sort((a, b) => (b.memberCount ?? 0) - (a.memberCount ?? 0));
         }
         setFilteredSocieties(sorted);
     }
@@ -78,7 +80,8 @@ export default function SocietyGrid({ universityId } : { universityId: number })
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
                 <option value="best">Best Rated</option>
-                <option value="soccount">Number of Societies</option>
+                <option value="soccount">Number of Reviews</option>
+                <option value="memcount">Number of Members</option>
             </select>
             </div>
 
