@@ -3,6 +3,7 @@ import { SOCIETY } from "@/constants/interfaces"
 import { useParams, useRouter } from "next/navigation"
 import { generateURLSafe } from "@/utils/URLSafe";
 import StarRating from "../stars/StarRating";
+import CategoryPill from "../CategoryPill";
 
 export default function SocietyCard( { society } : { society: SOCIETY }) {
     const safeUniName = useParams<{ university: string; }>().university;
@@ -22,10 +23,16 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
             </h1>
             <div className="flex items-center text-lg text-yellow-600 mb-2">
             <StarRating rating={society.rating} />
-            <span className="ml-1 text-gray-600 text-base">({society._count.reviews})</span>
+            <span className="ml-1 text-gray-600 text-base">({society._count?.reviews})</span>
             </div>
             <div className="mt-auto text-base text-gray-700">
             Around <span className="font-medium">{society.memberCount}</span> member{society.memberCount === 1 ? '' : 's'}
+            </div>
+            <div className="mt-auto">
+            <CategoryPill category={ {
+                "name": society.category?.name ?? null,
+                "colour": society.category?.colour ?? null
+            } } />
             </div>
             <div className="mt-auto text-sm text-gray-500">
                 Last reviewed: {new Date(society.updated_at).toLocaleDateString('en-GB')}
