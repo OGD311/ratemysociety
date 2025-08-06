@@ -43,6 +43,16 @@ model Society {
   university University @relation(fields: [universityId], references: [id])
 
   reviews Review[]
+  
+  category   Category   @relation(fields: [categoryId], references: [id])
+  categoryId Int        @unique @default(0)
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String @unique
+  colour String
+  societies Society[]
 }
 
 
@@ -61,6 +71,7 @@ model Review {
 
   @@unique([userId, societyId])
 }
+
 
 model User {
   id Int @id @default(autoincrement())
