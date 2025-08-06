@@ -31,7 +31,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
 
     let rating = review.rating;
     if (typeof(rating) != "number") throw new Error("Rating must be a number");
-    rating = Math.min(Math.max(rating, 0), 5);
+    rating = Math.min(Math.max(rating, 1), 5);
     
     let comment = review.comment;
     if (comment) {
@@ -62,7 +62,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
             comment = undefined;
         }
 
-        if (comment) { comment = filter.clean(comment); }
+        if (comment && comment != filter.clean(comment)) { throw new Error("No Profanity Allowed"); }
     }
 
     await prisma.review.create({
