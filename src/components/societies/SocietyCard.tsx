@@ -35,7 +35,7 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
             Around <span className="font-medium">{society.memberCount}</span> member{society.memberCount === 1 ? '' : 's'}
             </div>
             <div className="mt-auto text-sm text-gray-500">
-                Last updated: {new Date(society.updated_at).toLocaleDateString('en-GB')}
+                Last reviewed: {new Date(society.updated_at).toLocaleDateString('en-GB')}
             </div>
         </div>
     )
