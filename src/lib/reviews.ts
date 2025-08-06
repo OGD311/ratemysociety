@@ -98,7 +98,7 @@ export const submitReview = async (societyId: number, review: { rating: number, 
                     data: {
                         rating: rating,
                         comment: comment,
-                        is_updated: true 
+                        updated_at: new Date()
                     },
                 });
             }
