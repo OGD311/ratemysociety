@@ -61,7 +61,7 @@ model Review {
 
 model User {
   id Int @id @default(autoincrement())
-  ip String
+  ip String @unique
   fingerprint String
   is_banned Boolean @default(false)
 
