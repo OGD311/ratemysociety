@@ -1,6 +1,7 @@
 import { SOCIETY } from "@/constants/interfaces";
 import StarRating from "../stars/StarRating";
 import { UniNameArticle } from "@/utils/UniName";
+import CategoryPill from "../CategoryPill";
 
 
 export default function SocietyDetails( { society, universityName } : { society: SOCIETY, universityName: string }) {
@@ -13,12 +14,25 @@ export default function SocietyDetails( { society, universityName } : { society:
             {society.description ? (
                 <p className="text-gray-700">{society.description}</p>
             ) : (
-                <p className="text-gray-500 italic">
-                {society.name} is a society of category <span className="font-semibold">{"category"}</span> at {UniNameArticle(universityName)} <span className="font-semibold">{universityName}</span>
-                </p>
+                <span className="text-gray-500">
+                    {society.name} is a{' '}
+                    <CategoryPill category={ {
+                        "name": society.category_name ?? null,
+                        "colour": society.category_colour ?? null
+                    } } /> 
+                    {' '}category society at {UniNameArticle(universityName)} <span className="font-semibold">{universityName}</span>
+                </span>
             )}
             </div>
             <div className="flex flex-col items-baseline mt-6">
+                {society.description ? 
+                    <CategoryPill category={ {
+                        "name": society.category_name ?? null,
+                        "colour": society.category_colour ?? null
+                    } } /> 
+                    :
+                    ""
+                }
                 <StarRating rating={society.rating} />
                 <div className="text-md mt-3 text-gray-600">
                     Around <span className="font-semibold">{society.memberCount}</span> member{society.memberCount == 1 ? '' : 's'}
