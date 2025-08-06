@@ -7,7 +7,7 @@ export default function CategoryPill({ category } : { category: {name: string | 
 
     return (
         <span
-            className="border-2 w-fit p-1 rounded-2xl not-italic border-transparent"
+            className="border-2 w-fit p-1 rounded-2xl not-italic border-transparent mb-1"
             style={{
                 backgroundColor: mainColour,
                 color: complementColour,
