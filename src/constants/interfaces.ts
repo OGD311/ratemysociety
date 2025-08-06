@@ -18,7 +18,8 @@ export interface SOCIETY {
     website?: string | null,
     updated_at: Date,
 
-    category?: string,
+    category_name?: string,
+    category_colour?: string,
 
     _count: {
         reviews: number
