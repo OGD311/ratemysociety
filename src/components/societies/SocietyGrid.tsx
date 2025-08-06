@@ -80,8 +80,8 @@ export default function SocietyGrid({ universityId } : { universityId: number })
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
                 <option value="best">Best Rated</option>
-                <option value="soccount">Number of Reviews</option>
-                <option value="memcount">Number of Members</option>
+                <option value="soccount">Most Reviews</option>
+                <option value="memcount">Most Members</option>
             </select>
             </div>
 
