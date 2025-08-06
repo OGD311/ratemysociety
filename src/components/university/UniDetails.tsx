@@ -18,9 +18,7 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                     { university.description }                    
                 </p>
                 <div className="flex text-lg mt-auto text-yellow-600 text-left">
-                    <p className="mr-2">
-                        <StarRating rating={university.rating} />
-                    </p>
+                    <StarRating rating={university.rating} />
                 </div>
                 <div className="mt-2 text-lg text-left">
                     {university.societyCount} Societ{university.societyCount == 1 ? 'y' : 'ies'}<br />
