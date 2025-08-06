@@ -22,8 +22,9 @@ export const getSocieties = async (universityId: number) => {
 
 export const getSocietyDetails = async (universityName: string, societyName: string) => {
     const results: SOCIETY[] = await prisma.$queryRaw`
-        SELECT s.* FROM Society s
+        SELECT s.*, c.name as category_name, c.colour as category_colour FROM Society s
         INNER JOIN University u ON s.universityId = u.id
+        INNER JOIN Category c ON s.categoryId = c.id
         WHERE LOWER(s.name) = LOWER(${societyName}) AND LOWER(u.name) = LOWER(${universityName})
         LIMIT 1
     `;
