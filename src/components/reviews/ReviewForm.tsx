@@ -1,6 +1,7 @@
 import { submitReview } from '@/lib/reviews';
 import React, { useEffect, useRef, useState } from 'react';
 import StarRating from '../stars/StarRating';
+import StarInput from '../stars/StarInput';
 
 export default function ReviewForm({ societyId } : { societyId: number}) {
     const [loading, setLoading] = useState(false);
@@ -9,6 +10,9 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
     const cfWidget = useRef<HTMLDivElement>(null);
 
     const [rating, setRating] = useState(0);
+    const updateRating = (newRating: number) => {
+        setRating(newRating);
+    };
 
     useEffect(() => {
         const cfScript = document.createElement('script');
@@ -75,19 +79,8 @@ export default function ReviewForm({ societyId } : { societyId: number}) {
                 <label htmlFor="rating" className="font-semibold text-gray-700">
                     Rating:
                 </label>
-                <div className='flex flex-col ml-auto'>
-                    <StarRating rating={rating} />
-                    <input
-                        id="rating"
-                        type="range"
-                        name="rating"
-                        defaultValue={0}
-                        min={0}
-                        max={5}
-                        required
-                        className="w-24 mt-auto border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        onChange={(e) => setRating(Number(e.target.value))}
-                        />
+                <div className='flex flex-col ml-auto'>           
+                    <StarInput rating={rating} updateRating={updateRating} />
                 </div>
             </div>
             <div className="mt-4 flex flex-col gap-2">
