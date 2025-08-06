@@ -30,6 +30,13 @@ export interface REVIEW {
     posted_at: Date
 }
 
+export interface USER {
+    id?: number,
+    ip: string,
+    fingerprint: string,
+    is_banned: boolean
+}
+
 export interface SEARCH_RESULT {
     name: string;
 }
