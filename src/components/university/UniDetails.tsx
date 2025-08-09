@@ -1,7 +1,7 @@
 "use client";
 import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
-import { generateURLSafe } from "@/utils/URLSafe";
+import { generateDirectURL, generateURLSafe } from "@/utils/URLSafe";
 import StarRating from "../stars/StarRating";
 
 export default function UniDetails( { university } : { university: UNIVERSITY }) {
@@ -24,10 +24,10 @@ export default function UniDetails( { university } : { university: UNIVERSITY })
                     {university.societyCount} Societ{university.societyCount == 1 ? 'y' : 'ies'}<br />
                     Last updated: { university.updated_at?.toLocaleDateString?.() }
                     {university.website &&
-                    <a href={university.website} className="ml-10 border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800 transition duration-200">Website</a>
+                    <a href={generateDirectURL(university.website)} className="ml-10 border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800 transition duration-200" target="_blank">Website</a>
                     }
                     {university.studentsUnion &&
-                    <a href={university.studentsUnion} className="ml-2 border-0 rounded-lg p-2 bg-red-500 text-white hover:bg-red-800 transition duration-200">Students Union</a>
+                    <a href={generateDirectURL(university.studentsUnion)} className="ml-2 border-0 rounded-lg p-2 bg-red-500 text-white hover:bg-red-800 transition duration-200" target="_blank">Students Union</a>
                     }
                 </div>
             </div>
