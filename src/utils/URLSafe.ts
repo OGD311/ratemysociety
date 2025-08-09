@@ -15,3 +15,13 @@ export function generateOriginal(safe: string): string {
 
     return safe
 }
+
+export function generateDirectURL(indirect_url: string) {
+    if (!indirect_url.includes("https") && !indirect_url.includes("http")) {
+        indirect_url = "https://" + indirect_url
+    } else if (indirect_url.includes("http")) {
+        indirect_url.replace("http", "https")
+    }
+
+    return indirect_url
+}
