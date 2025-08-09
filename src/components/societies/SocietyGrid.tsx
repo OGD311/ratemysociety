@@ -92,7 +92,7 @@ export default function SocietyGrid({ universityId } : { universityId: number })
             {!loading && !error && filteredSocieties.length === 0 && <p>No societies found.</p>}
 
             {!loading && !error && filteredSocieties.length > 0 &&
-                <div className="grid 2xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 gap-5">
+                <div className="grid 2xl:grid-cols-7  xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
                     {filteredSocieties.map( (society) => (
                         <SocietyCard key={society.id} society={society} />
                     ))}
