@@ -19,9 +19,9 @@ export interface SOCIETY {
     updated_at: Date,
 
     category?: {
-        name?: string,
-        colour?: string
-    }
+        name?: string | null,
+        colour?: string | null
+    } | null
 
     _count?: {
         reviews: number
