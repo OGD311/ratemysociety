@@ -3,7 +3,7 @@ import { Filter } from "bad-words";
 const filter = new Filter();
 
 export const sanitiseAndValidateComment = (comment?: string) => {
-    if (!comment) { throw new Error("Comment cannot be blank"); }
+    if (!comment) { throw new Error("Review Comment cannot be blank"); }
 
     comment = comment.replace(/<[^>]*>/g, '');
     comment = comment.replace(/[<>\"'&]/g, '');
@@ -30,6 +30,6 @@ export const sanitiseAndValidateComment = (comment?: string) => {
         
     if (comment && comment != filter.clean(comment)) { throw new Error("No Profanity Allowed"); }
     else {
-        throw new Error("Review Comment cannot be blank");
+        return comment;
     }
 }
