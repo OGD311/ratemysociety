@@ -55,6 +55,7 @@ export default function UniSearchBox({ className } : { className?: string }) {
             placeholder="Search"
             value={search}
             onChange={handleInputChange}
+            className="p-3 border-gray-400 border-2"
         />
         {loading && <p className="absolute p-3 mt-2 text-center bg-white shadow-lg shadow-gray-500">Loading...</p>}
 
