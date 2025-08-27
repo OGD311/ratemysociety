@@ -10,7 +10,7 @@ export default function SocietyDetails( { society, universityName } : { society:
         
         <div className="border-2 border-gray-200 shadow-lg bg-white p-6 rounded-2xl w-[30dvw] min-w-[30dvw] max-w-[30dvw] h-auto flex flex-col justify-between">
             <div>
-            <h1 className="text-3xl font-bold mb-3 text-indigo-700">{society.name}</h1>
+            <h1 className="text-3xl font-bold mb-3 text-blue-700">{society.name}</h1>
             {society.description ? (
                 <p className="text-gray-700">{society.description}</p>
             ) : (
