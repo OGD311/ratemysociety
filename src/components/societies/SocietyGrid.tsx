@@ -3,9 +3,10 @@ import { getSocieties } from "@/lib/societies";
 import { useEffect, useState } from "react";
 import SocietyCard from "./SocietyCard";
 import Loader from "../Loader";
+import { UniNameArticle } from "@/utils/UniName";
 
 
-export default function SocietyGrid({ universityId } : { universityId: number }) {
+export default function SocietyGrid({ universityId, universityName } : { universityId: number, universityName: string }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [societies, setSocieties] = useState<SOCIETY[]>([]);
@@ -68,7 +69,7 @@ export default function SocietyGrid({ universityId } : { universityId: number })
             <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl gap-4 mb-8">
             <input
                 type="text"
-                placeholder="Search universities..."
+                placeholder={`Search societies${universityName ? ` at ${UniNameArticle(universityName) + " " + universityName}...` : '...'}`}
                 onChange={searchSocieties}
                 className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
