@@ -5,8 +5,8 @@ import { generateURLSafe } from "@/utils/URLSafe";
 import StarRating from "../stars/StarRating";
 import CategoryPill from "../CategoryPill";
 
-export default function SocietyCard( { society } : { society: SOCIETY }) {
-    const safeUniName = useParams<{ university: string; }>().university;
+export default function SocietyCard( { society, showUni } : { society: SOCIETY, showUni?: string }) {
+    const safeUniName = useParams<{ university: string; }>().university ?? generateURLSafe(showUni ?? "");
     const router = useRouter();
     
     const goToSociety = ( societyName: string ) => {
@@ -18,9 +18,14 @@ export default function SocietyCard( { society } : { society: SOCIETY }) {
             onClick={() => goToSociety(society.name)}
             className="flex flex-col items-center p-5 mt-8 bg-white border border-gray-200 shadow-md rounded-2xl w-60 h-56 cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-transform duration-200"
         >
-            <h1 className="mb-3 text-xl font-semibold text-center text-gray-800 truncate w-full">
+            <h1 className={`mb-${showUni ? 2 : 3} text-xl font-semibold text-center text-gray-800 truncate w-full`}>
             {society.name}
             </h1>
+            {showUni && 
+                <p className="text-gray-400 mb-1">
+                {showUni}
+                </p>
+            }
             <div className="flex items-center text-lg text-yellow-600 mb-2">
             <StarRating rating={society.rating} />
             <span className="ml-1 text-gray-600 text-base">({society._count?.reviews})</span>
