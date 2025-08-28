@@ -22,15 +22,18 @@ export const getReviews = async (societyId: number) => {
 
 export const submitReview = async (societyId: number, review: { rating: number, comment?: string }, turnstileToken: string, fingerprint: string) => {
     const headersList = await headers()
-    let ip = headersList.get("CF-Connecting-IP") || ""
+    let ip = headersList.get("CF-Connecting-IP") ||
+        headersList.get("X-Real-IP") ||
+        headersList.get("X-Forwarded-For")?.split(",")[0].trim() ||
+        ""
     const isValidToken = await verifyTurnstile(turnstileToken, ip);  
     
     if (!isValidToken) {
         throw new Error("Security Verification Failed - Please Refresh")
     }
 
-    const hash = createHash("sha256").update(ip + fingerprint).digest("hex");
-    const user = await getUserOrCreate(hash, fingerprint);
+    const ipHash = createHash("sha256").update(ip).digest("hex");
+    const user = await getUserOrCreate(ipHash, fingerprint);
     if (user.is_banned) { throw new Error("IP Banned for breaching TOS")}
 
 
