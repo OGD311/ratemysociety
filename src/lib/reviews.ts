@@ -12,7 +12,10 @@ export const getReviews = async (societyId: number) => {
     return await prisma.review.findMany({
         orderBy: { posted_at: 'desc' },
         where: {
-            societyId: societyId
+            societyId: societyId,
+            user: {
+                is_banned: false,
+            }
         }
     })
 }
