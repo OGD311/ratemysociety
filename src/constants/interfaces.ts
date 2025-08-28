@@ -26,6 +26,8 @@ export interface SOCIETY {
     _count?: {
         reviews: number
     }
+
+    university?: UNIVERSITY | null
 }
 
 export interface REVIEW {
