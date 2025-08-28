@@ -9,6 +9,19 @@ export const getUniversities = async () => {
     });
 };
 
+export const getUniversityName = async (universityId: number) => {
+    const uni=  await prisma.university.findFirst({
+        select: {
+            name: true
+        },
+        where: {
+            id: universityId
+        }
+    })
+
+    return uni ? uni.name : "";
+}
+
 
 export const searchUniversities = async (searchString: string) => {
     return await prisma.university.findMany({
