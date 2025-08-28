@@ -51,7 +51,7 @@ export default function ShowUni() {
             {!loading && !error && university !== null &&
                 <div className="text-center flex flex-col items-center">
                 <UniDetails university={university} />
-                <SocietyGrid universityId={university.id} />
+                <SocietyGrid universityId={university.id} universityName={fullUniversityName} />
                 </div>
             }
         </div>
