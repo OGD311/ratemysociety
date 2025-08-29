@@ -31,20 +31,7 @@ export default function RootLayout({ children } : { children: React.ReactNode}) 
                     >
                         About
                     </a>
-                    <a
-                        href="/termsandconditions"
-                        className={`ml-auto p-3 mr-3 transition duration-300 border-b-2 border-black pb-[10px] hover:bg-blue-500 hover:text-white
-                        ${pathname === '/termsandconditions' ? 'bg-blue-500 text-white' : ''}`}
-                    >
-                        Terms and Conditions
-                    </a>
-                    <a
-                        href="/privacy"
-                        className={`p-3 mr-3 transition duration-300 border-b-2 border-black pb-[10px] hover:bg-blue-500 hover:text-white
-                        ${pathname === '/privacy' ? 'bg-blue-500 text-white' : ''}`}
-                    >
-                        Privacy Policy
-                    </a>
+                  
                 
                     {/* <UniSearchBox className='p-3 ml-auto border-2 rounded-xl placeholder:text-black'/> */}
                 </nav>
@@ -53,7 +40,21 @@ export default function RootLayout({ children } : { children: React.ReactNode}) 
                 
                 <div className="mt-auto pt-1 w-full">
                     <footer className="flex mt-5 h-10 bg-amber-400 items-center justify-center">
-                    Rate My Society &copy; <a className='pr-1 pl-1' href='https://github.com/OGD311'>OGD311</a> {new Date().getFullYear()}
+                    <a
+                        href="/termsandconditions"
+                        className={`mr-5 ml-5 pr-2 pl-2 h-full flex items-center  ${pathname === '/termsandconditions' ? 'bg-blue-500 text-white' : ''}`}
+                    >
+                        Terms and Conditions
+                    </a>
+                    <a
+                        href="/privacy"
+                        className={`mr-auto pr-2 pl-2 h-full flex items-center  ${pathname === '/privacy' ? 'bg-blue-500 text-white' : ''}`}
+                    >
+                        Privacy Policy
+                    </a>
+                    <span className='mr-5'>
+                        Rate My Society &copy; <a className='pr-1 pl-1' href='https://github.com/OGD311'>OGD311</a> {new Date().getFullYear()}
+                    </span>
                     </footer>
                 </div>
             </body>
