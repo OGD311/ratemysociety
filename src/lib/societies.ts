@@ -73,7 +73,7 @@ export const calculateSocietyRating = async (societyId: number) => {
 
 
 export const getTopSocieties = async () => {
-    const societies =  await prisma.society.findMany({
+    return await prisma.society.findMany({
         take: 10,
         orderBy: [
             {
@@ -107,6 +107,4 @@ export const getTopSocieties = async () => {
             }
         }
         });
-    console.log(societies)
-    return societies
 }
