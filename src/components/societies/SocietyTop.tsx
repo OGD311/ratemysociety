@@ -39,7 +39,7 @@ export default function SocietyTop() {
             {!loading && !error && societies.length === 0 && <p>No societies found.</p>}
 
             {!loading && !error && societies.length > 0 &&
-                <div className="grid 2xl:grid-cols-7 xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-5">
+                <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-5">
                     {societies.map( (society) => (
                         <SocietyCard key={society.id} society={society} showUni={society.university?.name} />
                     ))}
