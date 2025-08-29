@@ -1,8 +1,10 @@
+import SocietyTop from "@/components/societies/SocietyTop";
 import UniSearchBox from "@/components/UniSearchBox";
 
 
 export default function Home() {
     return(
+        <>
         <div className="items-center justify-center w-1/2 text-center">
 
             <h1 className="mb-20 text-6xl">Rate My Society</h1>
@@ -13,7 +15,10 @@ export default function Home() {
                     <UniSearchBox  />
                 </form>
             </div>
-        
         </div>
+        <h3 className="text-2xl mt-5">Check out these trending societies:</h3>
+        <SocietyTop />
+        
+        </>
     );
 }
