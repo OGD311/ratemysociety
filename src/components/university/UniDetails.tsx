@@ -3,6 +3,7 @@ import { UNIVERSITY } from "@/constants/interfaces"
 import Image from "next/image"
 import { generateDirectURL, generateURLSafe } from "@/utils/URLSafe";
 import StarRating from "../stars/StarRating";
+import { RiShareBoxFill } from "react-icons/ri";
 
 export default function UniDetails({ university }: { university: UNIVERSITY }) {
     const safeName = generateURLSafe(university.name);
@@ -36,16 +37,17 @@ export default function UniDetails({ university }: { university: UNIVERSITY }) {
                         {university.website &&
                             <a
                                 href={generateDirectURL(university.website)}
-                                className="border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800 transition duration-200"
+                                className="group inline-flex items-center border-0 rounded-lg p-2 bg-blue-500 text-white hover:bg-blue-800 transition duration-200"
                                 target="_blank"
-                            >Website</a>
+                            >Website <RiShareBoxFill className="ml-2" />
+                            </a>
                         }
                         {university.studentsUnion &&
                             <a
                                 href={generateDirectURL(university.studentsUnion)}
-                                className="border-0 rounded-lg p-2 bg-red-500 text-white hover:bg-red-800 transition duration-200"
+                                className="inline-flex items-center border-0 rounded-lg p-2 bg-red-500 text-white hover:bg-red-800 transition duration-200"
                                 target="_blank"
-                            >Students Union</a>
+                            >Students Union <RiShareBoxFill className="ml-2" /></a>
                         }
                     </div>
                 </div>
