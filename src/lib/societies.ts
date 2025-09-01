@@ -80,20 +80,28 @@ export const getTopSocieties = async () => {
         take: 10,
         orderBy: [
             {
-            rating: 'desc',
+                views: {
+                    _count: 'desc'
+                }
             },
             {
-            reviews: {
-                _count: 'desc',
-            },
+                rating: 'desc',
             },
             {
-            updated_at: 'desc',
+                reviews: {
+                    _count: 'desc',
+                },
+            },
+            {
+                updated_at: 'desc',
             },
         ],
         include: {
             _count: {
-            select: { reviews: true },
+            select: { 
+                reviews: true,
+                views: true
+            },
             },
             university: {
                 select: {
@@ -107,7 +115,7 @@ export const getTopSocieties = async () => {
             },
             rating: {
                 gt: 3
-            }
+            },
         }
         });
 }
