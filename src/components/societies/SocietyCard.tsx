@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation"
 import { generateURLSafe } from "@/utils/URLSafe";
 import StarRating from "../stars/StarRating";
 import CategoryPill from "../CategoryPill";
+import { FaEye } from "react-icons/fa";
 
 export default function SocietyCard( { society, showUni } : { society: SOCIETY, showUni?: string }) {
     const safeUniName = useParams<{ university: string; }>().university ?? generateURLSafe(showUni ?? "");
@@ -33,11 +34,15 @@ export default function SocietyCard( { society, showUni } : { society: SOCIETY, 
             <div className="mt-auto text-base text-gray-700">
             Around <span className="font-medium">{society.memberCount}</span> member{society.memberCount === 1 ? '' : 's'}
             </div>
-            <div className="mt-auto">
-            <CategoryPill category={ {
-                "name": society.category?.name ?? null,
-                "colour": society.category?.colour ?? null
-            } } />
+            <div className="mt-auto flex items-center">
+                <CategoryPill category={ {
+                    "name": society.category?.name ?? null,
+                    "colour": society.category?.colour ?? null
+                } } />
+                <div className="flex ml-5 items-center">
+                    <FaEye className="mr-1" />
+                    {society._count?.views}
+                </div>
             </div>
             <div className="mt-auto text-sm text-gray-500">
                 Last reviewed: {new Date(society.updated_at).toLocaleDateString('en-GB')}
