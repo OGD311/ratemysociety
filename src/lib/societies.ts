@@ -13,7 +13,8 @@ export const getSocieties = async (universityId: number) => {
             category: true,
             _count: {
                 select: {
-                    reviews: true
+                    reviews: true,
+                    views: true
                 }
             }
         }
@@ -47,6 +48,8 @@ export const getSocietyDetails = async (universityName: string, societyName: str
     delete societyDetails.category_name;
     // @ts-ignore
     delete societyDetails.category_colour;
+
+    increaseViewCount(societyDetails.id)
 
     return societyDetails;
 }
@@ -107,4 +110,13 @@ export const getTopSocieties = async () => {
             }
         }
         });
+}
+
+
+export const increaseViewCount = async (societyId: number) => {
+    await prisma.view.create({
+        data: {
+            societyId: societyId
+        }
+    })
 }
