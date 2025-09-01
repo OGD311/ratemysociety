@@ -1,12 +1,17 @@
+import createDOMPurify from 'dompurify';
+// @ts-ignore
+import { JSDOM } from 'jsdom';
 import { Filter } from "bad-words";
 
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
 const filter = new Filter();
+
 
 export const sanitiseAndValidateComment = (comment?: string) => {
     if (!comment) { throw new Error("Review Comment cannot be blank"); }
 
-    comment = comment.replace(/<[^>]*>/g, '');
-    comment = comment.replace(/[<>\"'&]/g, '');
+    comment = DOMPurify.sanitize(comment, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
     comment = comment.trim();
         
     if (comment.length > 255) {
